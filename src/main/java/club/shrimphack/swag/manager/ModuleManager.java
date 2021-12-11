@@ -6,6 +6,7 @@ import club.shrimphack.swag.features.modules.misc.BowMcBomb;
 import club.shrimphack.swag.features.modules.movements.Sprint;
 import club.shrimphack.swag.features.modules.movements.Step;
 import club.shrimphack.swag.features.modules.player.FakePlayer;
+import club.shrimphack.swag.features.modules.render.HoleESP;
 import club.shrimphack.swag.util.Util;
 import com.mojang.realmsclient.gui.ChatFormatting;
 import club.shrimphack.swag.ShrimpHack;
@@ -47,6 +48,7 @@ public class ModuleManager
         this.modules.add(new Surround());
         this.modules.add(new FakePlayer());
         this.modules.add(new AutoCrystal());
+        this.modules.add(new HoleESP());
     }
 
     public Module getModuleByName(String name) {

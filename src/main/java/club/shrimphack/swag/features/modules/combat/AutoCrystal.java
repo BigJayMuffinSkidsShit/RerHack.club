@@ -144,7 +144,7 @@ public class AutoCrystal
     private boolean offhand;
 
     public AutoCrystal() {
-        super("AutoCrystalNew", "Based crystal aura.", Category.COMBAT, true, false, false);
+        super("AutoShrimp", "Based crystal aura.", Category.COMBAT, true, false, false);
         this.placedList = new ArrayList<BlockPos>();
         this.breakTimer = new Timer();
         this.placeTimer = new Timer();
