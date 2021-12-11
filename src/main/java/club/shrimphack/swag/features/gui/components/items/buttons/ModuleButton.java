@@ -26,8 +26,8 @@ public class ModuleButton
     private List<Item> items = new ArrayList<Item>();
     private boolean subOpen;
     private boolean on=false;
-    public Color one;
-    public Color two;
+    public Color one=ColorUtil.RandomColor();
+    public Color two=ColorUtil.RandomColor();
     public ModuleButton(Module module) {
         super(module.getName());
         this.module = module;
@@ -83,10 +83,8 @@ public class ModuleButton
                 Util.mc.getTextureManager().bindTexture(this.logo);
                 ModuleButton.drawCompleteImage(this.x - 1.5f + (float) this.width - 7.4f, this.y - 2.2f - (float) OyVeyGui.getClickGui().getTextOffset(), 8, 8);
             }
-            if(this.on)
-            {
+            if(module.isEnabled())
                 RenderUtil.drawGradientRect(this.x, this.y, this.x + (float) this.width, this.y + (float) this.height - 0.5f, one,two);
-            }
             if (this.subOpen) {
                 float height = 1.0f;
                 for (Item item : this.items) {

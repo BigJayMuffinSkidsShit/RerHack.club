@@ -6,6 +6,7 @@
   "mixins": [
     "accessors.IC00Handshake",
     "accessors.IServerAddress",
+    "MixinNetworkManager",
     "accessors.AccessorCPacketUseEntity",
     "IEntity",
     "IEntityLivingBase"
