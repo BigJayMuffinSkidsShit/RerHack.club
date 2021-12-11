@@ -7,12 +7,15 @@ import club.shrimphack.swag.features.modules.Module;
 import club.shrimphack.swag.features.modules.client.HUD;
 import club.shrimphack.swag.features.setting.Bind;
 import club.shrimphack.swag.features.setting.Setting;
+import club.shrimphack.swag.util.ColorUtil;
+import club.shrimphack.swag.util.RenderUtil;
 import club.shrimphack.swag.util.Util;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +25,9 @@ public class ModuleButton
     private final ResourceLocation logo = new ResourceLocation("textures/oyvey.png");
     private List<Item> items = new ArrayList<Item>();
     private boolean subOpen;
-
+    private boolean on=false;
+    public Color one;
+    public Color two;
     public ModuleButton(Module module) {
         super(module.getName());
         this.module = module;
@@ -78,6 +83,10 @@ public class ModuleButton
                 Util.mc.getTextureManager().bindTexture(this.logo);
                 ModuleButton.drawCompleteImage(this.x - 1.5f + (float) this.width - 7.4f, this.y - 2.2f - (float) OyVeyGui.getClickGui().getTextOffset(), 8, 8);
             }
+            if(this.on)
+            {
+                RenderUtil.drawGradientRect(this.x, this.y, this.x + (float) this.width, this.y + (float) this.height - 0.5f, one,two);
+            }
             if (this.subOpen) {
                 float height = 1.0f;
                 for (Item item : this.items) {
@@ -91,6 +100,9 @@ public class ModuleButton
                     item.update();
                 }
             }
+
+
+
         }
     }
 
@@ -98,6 +110,12 @@ public class ModuleButton
     public void mouseClicked(int mouseX, int mouseY, int mouseButton) {
         super.mouseClicked(mouseX, mouseY, mouseButton);
         if (!this.items.isEmpty()) {
+            if(mouseButton != 1 && this.isHovering(mouseX, mouseY))
+            {
+                on=!on;
+                one=ColorUtil.RandomColor();
+                two=ColorUtil.RandomColor();
+            }
             if (mouseButton == 1 && this.isHovering(mouseX, mouseY)) {
                 this.subOpen = !this.subOpen;
                 Util.mc.getSoundHandler().playSound(PositionedSoundRecord.getMasterRecord(SoundEvents.UI_BUTTON_CLICK, 1.0f));
@@ -141,7 +159,9 @@ public class ModuleButton
 
     @Override
     public void toggle() {
+
         this.module.toggle();
+
     }
 
     @Override

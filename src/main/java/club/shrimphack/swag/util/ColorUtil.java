@@ -3,6 +3,7 @@ package club.shrimphack.swag.util;
 import club.shrimphack.swag.features.modules.client.ClickGui;
 
 import java.awt.*;
+import java.util.Random;
 
 public class ColorUtil {
     public static int toARGB(int r, int g, int b, int a) {
@@ -42,6 +43,17 @@ public class ColorUtil {
 
     public static int toRGBA(Color color) {
         return ColorUtil.toRGBA(color.getRed(), color.getGreen(), color.getBlue(), color.getAlpha());
+    }
+
+    public static Color RandomColor()
+    {
+        Random rand = new Random();
+        // Java 'Color' class takes 3 floats, from 0 to 1.
+        float r = rand.nextFloat();
+        float g = rand.nextFloat();
+        float b = rand.nextFloat();
+        Color randomColor = new Color(r, g, b);
+        return randomColor;
     }
 }
 

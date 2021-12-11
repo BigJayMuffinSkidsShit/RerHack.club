@@ -56,6 +56,37 @@ public class RenderUtil
         override = GL11.glIsEnabled(2848);
     }
 
+    public static void drawGradientRect(float x, float y, float w, float h, Color startColor, Color endColor)
+    {
+        double zLevel=0.0;
+
+        float f = (float) startColor.getRed() / 255.0f;
+        float f1 = (float) startColor.getGreen() / 255.0f;
+        float f2 = (float) startColor.getBlue() / 255.0f;
+        float f3 = (float) startColor.getAlpha() / 255.0f;
+        float f4 = (float) endColor.getRed() / 255.0f;
+        float f5 = (float) endColor.getGreen() / 255.0f;
+        float f6 = (float) endColor.getBlue() / 255.0f;
+        float f7 = (float) endColor.getAlpha() / 255.0f;
+        GlStateManager.disableTexture2D();
+        GlStateManager.enableBlend();
+        GlStateManager.disableAlpha();
+        GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
+        GlStateManager.shadeModel(7425);
+        Tessellator tessellator = Tessellator.getInstance();
+        BufferBuilder bufferbuilder = tessellator.getBuffer();
+        bufferbuilder.begin(7, DefaultVertexFormats.POSITION_COLOR);
+        bufferbuilder.pos((double)x, (double)h, (double)zLevel).color(f1, f2, f3, f).endVertex();
+        bufferbuilder.pos((double)w, (double)h, (double)zLevel).color(f1, f2, f3, f).endVertex();
+        bufferbuilder.pos((double)w, (double)y, (double)zLevel).color(f5, f6, f7, f4).endVertex();
+        bufferbuilder.pos((double)x, (double)y, (double)zLevel).color(f5, f6, f7, f4).endVertex();
+        tessellator.draw();
+        GlStateManager.shadeModel(7424);
+        GlStateManager.disableBlend();
+        GlStateManager.enableAlpha();
+        GlStateManager.enableTexture2D();
+    }
+
     public static void drawRectangleCorrectly(int x, int y, int w, int h, int color) {
         GL11.glLineWidth(1.0f);
         Gui.drawRect(x, y, x + w, y + h, color);
