@@ -30,7 +30,11 @@ crash-reports/
 changelog.txt
 saves/
 crash-reports/
-
+gradle.properties/
+gradlew/
+gradlew.bat/
+.gitignore/
+build.gradle/
 #eclipse
 
 bin
