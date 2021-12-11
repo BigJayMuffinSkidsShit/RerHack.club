@@ -77,7 +77,7 @@ public class CommandManager
     }
 
     public void setClientMessage(String clientMessage) {
-        this.clientMessage = clientMessage;
+        this.clientMessage = "-" + ChatFormatting.YELLOW + "ShrimpHack.club" + "-";
     }
 
     public String getPrefix() {
