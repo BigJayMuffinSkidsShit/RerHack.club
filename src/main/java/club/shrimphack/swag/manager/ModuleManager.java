@@ -4,11 +4,12 @@ import club.shrimphack.swag.features.modules.combat.AutoCrystal;
 import club.shrimphack.swag.features.modules.combat.Surround;
 import club.shrimphack.swag.features.modules.movements.Sprint;
 import club.shrimphack.swag.features.modules.movements.Step;
+import club.shrimphack.swag.features.modules.movements.Strafe;
 import club.shrimphack.swag.features.modules.player.FakePlayer;
 import club.shrimphack.swag.features.modules.render.HoleESP;
 import club.shrimphack.swag.util.Util;
 import com.mojang.realmsclient.gui.ChatFormatting;
-import club.shrimphack.swag.ShrimpHack;
+import club.shrimphack.swag.RerHack;
 import club.shrimphack.swag.event.events.Render2DEvent;
 import club.shrimphack.swag.event.events.Render3DEvent;
 import club.shrimphack.swag.features.Feature;
@@ -47,6 +48,7 @@ public class ModuleManager
         this.modules.add(new FakePlayer());
         this.modules.add(new AutoCrystal());
         this.modules.add(new HoleESP());
+        this.modules.add(new Strafe());
     }
 
     public Module getModuleByName(String name) {
@@ -238,7 +240,7 @@ public class ModuleManager
                 }
             } else {
                 for (String e : ModuleManager.this.sortedModulesABC) {
-                    Module module = ShrimpHack.moduleManager.getModuleByName(e);
+                    Module module = RerHack.moduleManager.getModuleByName(e);
                     String text = module.getDisplayName() + ChatFormatting.GRAY + (module.getDisplayInfo() != null ? " [" + ChatFormatting.WHITE + module.getDisplayInfo() + ChatFormatting.GRAY + "]" : "");
                     module.offset = (float) ModuleManager.this.renderer.getStringWidth(text) / HUD.getInstance().animationHorizontalTime.getValue().floatValue();
                     module.vOffset = (float) ModuleManager.this.renderer.getFontHeight() / HUD.getInstance().animationVerticalTime.getValue().floatValue();

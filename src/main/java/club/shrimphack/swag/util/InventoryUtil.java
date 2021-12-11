@@ -1,6 +1,6 @@
 package club.shrimphack.swag.util;
 
-import club.shrimphack.swag.ShrimpHack;
+import club.shrimphack.swag.RerHack;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -182,7 +182,7 @@ public class InventoryUtil
                     switchedItemSwitched[0] = true;
                 } else if (back && switchedItem) {
                     switchedItemSwitched[0] = false;
-                    ShrimpHack.inventoryManager.recoverSilent(lastHotbarSlot);
+                    RerHack.inventoryManager.recoverSilent(lastHotbarSlot);
                 }
                 switchedItemSwitched[1] = true;
                 break;
@@ -214,7 +214,7 @@ public class InventoryUtil
                     switchedItemSwitched[0] = true;
                 } else if (back && switchedItem) {
                     switchedItemSwitched[0] = false;
-                    ShrimpHack.inventoryManager.recoverSilent(lastHotbarSlot);
+                    RerHack.inventoryManager.recoverSilent(lastHotbarSlot);
                 }
                 switchedItemSwitched[1] = true;
                 break;

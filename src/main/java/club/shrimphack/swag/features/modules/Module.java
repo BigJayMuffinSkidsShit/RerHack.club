@@ -7,7 +7,7 @@ import club.shrimphack.swag.features.Feature;
 import club.shrimphack.swag.features.command.Command;
 import club.shrimphack.swag.features.setting.Bind;
 import com.mojang.realmsclient.gui.ChatFormatting;
-import club.shrimphack.swag.ShrimpHack;
+import club.shrimphack.swag.RerHack;
 import club.shrimphack.swag.features.modules.client.HUD;
 import club.shrimphack.swag.features.setting.Setting;
 import net.minecraft.util.text.TextComponentString;
@@ -102,7 +102,7 @@ public class Module
         this.onToggle();
         this.onEnable();
         if (HUD.getInstance().notifyToggles.getValue().booleanValue()) {
-            TextComponentString text = new TextComponentString(ShrimpHack.commandManager.getClientMessage() + " " + ChatFormatting.GREEN + this.getDisplayName() + " toggled on.");
+            TextComponentString text = new TextComponentString(RerHack.commandManager.getClientMessage() + " " + ChatFormatting.GREEN + this.getDisplayName() + " toggled on.");
             Module.mc.ingameGUI.getChatGUI().printChatMessageWithOptionalDeletion(text, 1);
         }
         if (this.isOn() && this.hasListener && !this.alwaysListening) {
@@ -116,7 +116,7 @@ public class Module
         }
         this.enabled.setValue(false);
         if (HUD.getInstance().notifyToggles.getValue().booleanValue()) {
-            TextComponentString text = new TextComponentString(ShrimpHack.commandManager.getClientMessage() + " " + ChatFormatting.RED + this.getDisplayName() + " toggled off.");
+            TextComponentString text = new TextComponentString(RerHack.commandManager.getClientMessage() + " " + ChatFormatting.RED + this.getDisplayName() + " toggled off.");
             Module.mc.ingameGUI.getChatGUI().printChatMessageWithOptionalDeletion(text, 1);
         }
         this.onToggle();
@@ -136,8 +136,8 @@ public class Module
     }
 
     public void setDisplayName(String name) {
-        Module module = ShrimpHack.moduleManager.getModuleByDisplayName(name);
-        Module originalModule = ShrimpHack.moduleManager.getModuleByName(name);
+        Module module = RerHack.moduleManager.getModuleByDisplayName(name);
+        Module originalModule = RerHack.moduleManager.getModuleByName(name);
         if (module == null && originalModule == null) {
             Command.sendMessage(this.getDisplayName() + ", name: " + this.getName() + ", has been renamed to: " + name);
             this.displayName.setValue(name);

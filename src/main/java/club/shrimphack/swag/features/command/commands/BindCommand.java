@@ -4,7 +4,7 @@ import club.shrimphack.swag.features.command.Command;
 import club.shrimphack.swag.features.modules.Module;
 import club.shrimphack.swag.features.setting.Bind;
 import com.mojang.realmsclient.gui.ChatFormatting;
-import club.shrimphack.swag.ShrimpHack;
+import club.shrimphack.swag.RerHack;
 import org.lwjgl.input.Keyboard;
 
 public class BindCommand
@@ -21,7 +21,7 @@ public class BindCommand
         }
         String rkey = commands[1];
         String moduleName = commands[0];
-        Module module = ShrimpHack.moduleManager.getModuleByName(moduleName);
+        Module module = RerHack.moduleManager.getModuleByName(moduleName);
         if (module == null) {
             BindCommand.sendMessage("Unknown module '" + module + "'!");
             return;

@@ -1,7 +1,7 @@
 package club.shrimphack.swag.manager;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
-import club.shrimphack.swag.ShrimpHack;
+import club.shrimphack.swag.RerHack;
 import club.shrimphack.swag.event.events.PacketEvent;
 import club.shrimphack.swag.features.Feature;
 import club.shrimphack.swag.features.command.Command;
@@ -29,7 +29,7 @@ public class ReloadManager
     public void onPacketSend(PacketEvent.Send event) {
         CPacketChatMessage packet;
         if (event.getPacket() instanceof CPacketChatMessage && (packet = event.getPacket()).getMessage().startsWith(this.prefix) && packet.getMessage().contains("reload")) {
-            ShrimpHack.load();
+            RerHack.load();
             event.setCanceled(true);
         }
     }

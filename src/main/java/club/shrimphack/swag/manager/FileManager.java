@@ -1,6 +1,6 @@
 package club.shrimphack.swag.manager;
 
-import club.shrimphack.swag.ShrimpHack;
+import club.shrimphack.swag.RerHack;
 import club.shrimphack.swag.features.Feature;
 import club.shrimphack.swag.features.modules.Module;
 
@@ -24,7 +24,7 @@ public class FileManager
 
     public FileManager() {
         this.getMkDirectory(this.base, "pvp");
-        for (Module.Category category : ShrimpHack.moduleManager.getCategories()) {
+        for (Module.Category category : RerHack.moduleManager.getCategories()) {
             this.getMkDirectory(this.config, category.getName());
         }
     }

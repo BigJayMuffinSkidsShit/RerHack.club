@@ -1,6 +1,6 @@
 package club.shrimphack.swag.features.modules.client;
 
-import club.shrimphack.swag.ShrimpHack;
+import club.shrimphack.swag.RerHack;
 import club.shrimphack.swag.features.modules.Module;
 import club.shrimphack.swag.features.setting.Setting;
 import club.shrimphack.swag.util.ColorUtil;
@@ -48,7 +48,7 @@ public class Colors extends Module
             tempHue += 0.0013071896f;
         }
         if (ClickGui.getInstance().rainbow.getValue()) {
-            ShrimpHack.colorManager.setColor(Colors.INSTANCE.getCurrentColor().getRed(), Colors.INSTANCE.getCurrentColor().getGreen(), Colors.INSTANCE.getCurrentColor().getBlue(), ClickGui.getInstance().hoverAlpha.getValue());
+            RerHack.colorManager.setColor(Colors.INSTANCE.getCurrentColor().getRed(), Colors.INSTANCE.getCurrentColor().getGreen(), Colors.INSTANCE.getCurrentColor().getBlue(), ClickGui.getInstance().hoverAlpha.getValue());
         }
     }
 

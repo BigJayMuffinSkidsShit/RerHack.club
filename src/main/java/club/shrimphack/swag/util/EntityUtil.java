@@ -2,10 +2,9 @@ package club.shrimphack.swag.util;
 
 import club.shrimphack.swag.mixin.mixins.IEntityLivingBase;
 import com.mojang.realmsclient.gui.ChatFormatting;
-import club.shrimphack.swag.ShrimpHack;
+import club.shrimphack.swag.RerHack;
 import net.minecraft.block.*;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.Minecraft;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.*;
 import net.minecraft.entity.item.EntityBoat;
@@ -88,7 +87,7 @@ public class EntityUtil
     }
 
     public static boolean isPlayerValid(final EntityPlayer player, final float range) {
-        return player != mc.player && mc.player.getDistance(player) < range && !isDead(player) && !ShrimpHack.friendManager.isFriend(player.getName());
+        return player != mc.player && mc.player.getDistance(player) < range && !isDead(player) && !RerHack.friendManager.isFriend(player.getName());
     }
 
     private static float getBlastReduction(final EntityLivingBase entity, final float damageI, final Explosion explosion) {
@@ -760,7 +759,7 @@ public class EntityUtil
     }
 
     public static boolean isntValid(Entity entity, double range) {
-        return entity == null || EntityUtil.isDead(entity) || entity.equals(EntityUtil.mc.player) || entity instanceof EntityPlayer && ShrimpHack.friendManager.isFriend(entity.getName()) || EntityUtil.mc.player.getDistanceSq(entity) > MathUtil.square(range);
+        return entity == null || EntityUtil.isDead(entity) || entity.equals(EntityUtil.mc.player) || entity instanceof EntityPlayer && RerHack.friendManager.isFriend(entity.getName()) || EntityUtil.mc.player.getDistanceSq(entity) > MathUtil.square(range);
     }
 
     public static boolean isValid(Entity entity, double range) {
@@ -845,7 +844,7 @@ public class EntityUtil
 
     public static Color getColor(Entity entity, int red, int green, int blue, int alpha, boolean colorFriends) {
         Color color = new Color((float) red / 255.0f, (float) green / 255.0f, (float) blue / 255.0f, (float) alpha / 255.0f);
-        if (entity instanceof EntityPlayer && colorFriends && ShrimpHack.friendManager.isFriend((EntityPlayer) entity)) {
+        if (entity instanceof EntityPlayer && colorFriends && RerHack.friendManager.isFriend((EntityPlayer) entity)) {
             color = new Color(0.33333334f, 1.0f, 1.0f, (float) alpha / 255.0f);
         }
         return color;
@@ -892,7 +891,7 @@ public class EntityUtil
             if (EntityUtil.mc.player.getDistanceSq(player) > range * range) {
                 continue;
             }
-            if (ShrimpHack.friendManager.isFriend(player)) {
+            if (RerHack.friendManager.isFriend(player)) {
                 continue;
             }
             for (final Vec3d vec : EntityUtil.doubleLegOffsetList) {
@@ -974,7 +973,7 @@ public class EntityUtil
                 distanceSB.append("c");
             }
             distanceSB.append(distance);
-            output.put(healthSB.toString() + " " + (ShrimpHack.friendManager.isFriend(player) ? ChatFormatting.AQUA : ChatFormatting.RED) + player.getName() + " " + distanceSB.toString() + " \u00c2\u00a7f0", (int) EntityUtil.mc.player.getDistance(player));
+            output.put(healthSB.toString() + " " + (RerHack.friendManager.isFriend(player) ? ChatFormatting.AQUA : ChatFormatting.RED) + player.getName() + " " + distanceSB.toString() + " \u00c2\u00a7f0", (int) EntityUtil.mc.player.getDistance(player));
             healthSB.setLength(0);
             distanceSB.setLength(0);
         }

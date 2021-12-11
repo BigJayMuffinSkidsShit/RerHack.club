@@ -1,35 +1,21 @@
 package club.shrimphack.swag.features.modules.combat;
 
 import club.shrimphack.swag.mixin.mixins.accessors.AccessorCPacketUseEntity;
-import com.mojang.authlib.GameProfile;
-import io.netty.util.internal.ConcurrentSet;
-import club.shrimphack.swag.ShrimpHack;
-import club.shrimphack.swag.event.events.ClientEvent;
+import club.shrimphack.swag.RerHack;
 import club.shrimphack.swag.event.events.PacketEvent;
 import club.shrimphack.swag.event.events.Render3DEvent;
-import club.shrimphack.swag.event.events.UpdateWalkingPlayerEvent;
-import club.shrimphack.swag.features.command.Command;
-import club.shrimphack.swag.features.gui.OyVeyGui;
 import club.shrimphack.swag.features.modules.Module;
 import club.shrimphack.swag.features.modules.client.ClickGui;
-import club.shrimphack.swag.features.setting.Bind;
 import club.shrimphack.swag.features.setting.Setting;
 import club.shrimphack.swag.util.Timer;
 import club.shrimphack.swag.util.*;
-import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.entity.EntityOtherPlayerMP;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityEnderCrystal;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.ItemEndCrystal;
-import net.minecraft.item.ItemPickaxe;
 import net.minecraft.network.Packet;
-import net.minecraft.network.play.client.CPacketAnimation;
 import net.minecraft.network.play.client.CPacketPlayer;
 import net.minecraft.network.play.client.CPacketPlayerTryUseItemOnBlock;
 import net.minecraft.network.play.client.CPacketUseEntity;
@@ -37,24 +23,16 @@ import net.minecraft.network.play.server.*;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.gameevent.InputEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
-import org.lwjgl.input.Keyboard;
-import org.lwjgl.input.Mouse;
 
 import java.awt.*;
 import java.util.List;
-import java.util.Queue;
 import java.util.*;
-import java.util.concurrent.*;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 public class AutoCrystal
         extends Module {
@@ -334,7 +312,7 @@ public class AutoCrystal
             case All: {
                 final float[] angle = MathUtil.calcAngle(AutoCrystal.mc.player.getPositionEyes(this.mc.getRenderPartialTicks()), new Vec3d((double)(pos.getX() + 0.5f), (double)(pos.getY() - 0.5f), (double)(pos.getZ() + 0.5f)));
                 if (this.rotate.getValue() != Rotate.OFF) {
-                    ShrimpHack.rotationManager.setPlayerRotations(angle[0], angle[1]);
+                    RerHack.rotationManager.setPlayerRotations(angle[0], angle[1]);
                     break;
                 }
                 this.yaw = angle[0];

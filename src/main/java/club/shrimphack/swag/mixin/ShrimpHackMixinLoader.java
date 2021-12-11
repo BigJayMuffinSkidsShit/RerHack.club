@@ -1,6 +1,6 @@
 package club.shrimphack.swag.mixin;
 
-import club.shrimphack.swag.ShrimpHack;
+import club.shrimphack.swag.RerHack;
 import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
 import org.spongepowered.asm.launch.MixinBootstrap;
 import org.spongepowered.asm.mixin.MixinEnvironment;
@@ -12,11 +12,11 @@ public class ShrimpHackMixinLoader implements IFMLLoadingPlugin {
     private static boolean isObfuscatedEnvironment = false;
 
     public ShrimpHackMixinLoader() {
-        ShrimpHack.LOGGER.info("\n\nLoading mixins by BlackBro4");
+        RerHack.LOGGER.info("\n\nLoading mixins by BlackBro4");
         MixinBootstrap.init();
         Mixins.addConfiguration("mixins.shrimphack.json");
         MixinEnvironment.getDefaultEnvironment().setObfuscationContext("searge");
-        ShrimpHack.LOGGER.info(MixinEnvironment.getDefaultEnvironment().getObfuscationContext());
+        RerHack.LOGGER.info(MixinEnvironment.getDefaultEnvironment().getObfuscationContext());
     }
 
     public String[] getASMTransformerClass() {

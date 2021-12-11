@@ -5,7 +5,7 @@ import club.shrimphack.swag.features.command.Command;
 import club.shrimphack.swag.features.modules.Module;
 import club.shrimphack.swag.features.setting.Setting;
 import com.mojang.realmsclient.gui.ChatFormatting;
-import club.shrimphack.swag.ShrimpHack;
+import club.shrimphack.swag.RerHack;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import java.awt.*;
@@ -64,7 +64,7 @@ public class FontMod
     @Override
     public void onTick() {
         if (this.reloadFont) {
-            ShrimpHack.textManager.init(false);
+            RerHack.textManager.init(false);
             this.reloadFont = false;
         }
     }

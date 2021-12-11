@@ -1,6 +1,6 @@
 package club.shrimphack.swag.util;
 
-import club.shrimphack.swag.ShrimpHack;
+import club.shrimphack.swag.RerHack;
 import club.shrimphack.swag.features.command.Command;
 import com.google.common.util.concurrent.AtomicDouble;
 import net.minecraft.block.*;
@@ -26,7 +26,6 @@ import net.minecraft.world.chunk.Chunk;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 
@@ -304,7 +303,7 @@ public class BlockUtil
             sneaking = true;
         }
         if (rotate) {
-            ShrimpHack.rotationManager.lookAtVec3d(hitVec);
+            RerHack.rotationManager.lookAtVec3d(hitVec);
         }
         BlockUtil.rightClickBlock(neighbour, hitVec, hand, opposite, packet);
         BlockUtil.mc.player.swingArm(EnumHand.MAIN_HAND);

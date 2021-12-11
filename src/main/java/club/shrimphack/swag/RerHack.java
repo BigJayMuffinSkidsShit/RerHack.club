@@ -9,12 +9,12 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lwjgl.opengl.Display;
 
-@Mod(modid = "shrimphack", name = "ShrimpHack.club", version = "0.3")
-public class ShrimpHack {
-    public static final String MODID = "shrimphack";
-    public static final String MODNAME = "ShrimpHack.club";
+@Mod(modid = "rer", name = "RerHack.club", version = "0.3")
+public class RerHack {
+    public static final String MODID = "rer";
+    public static final String MODNAME = "RerHack.club";
     public static final String MODVER = "0.3";
-    public static final Logger LOGGER = LogManager.getLogger("ShrimpHack.club");
+    public static final Logger LOGGER = LogManager.getLogger("RerHack.club");
     public static CommandManager commandManager;
     public static FriendManager friendManager;
     public static ModuleManager moduleManager;
@@ -35,7 +35,7 @@ public class ShrimpHack {
     public static OyVeyGui gui;
     public static DiscordPresence discordPresence;
     @Mod.Instance
-    public static ShrimpHack INSTANCE;
+    public static RerHack INSTANCE;
     private static boolean unloaded;
 
     static {
@@ -43,7 +43,7 @@ public class ShrimpHack {
     }
 
     public static void load() {
-        LOGGER.info("\n\nLoading ShrimpHack.club");
+        LOGGER.info("\n\nLoading RerHack.club");
         unloaded = false;
         if (reloadManager != null) {
             reloadManager.unload();
@@ -75,16 +75,16 @@ public class ShrimpHack {
         LOGGER.info("EventManager loaded.");
         textManager.init(true);
         moduleManager.onLoad();
-        LOGGER.info("ShrimpHack.club successfully loaded!\n");
+        LOGGER.info("RerHack.club successfully loaded!\n");
     }
 
     public static void unload(boolean unload) {
-        LOGGER.info("\n\nUnloading ShrimpHack.club");
+        LOGGER.info("\n\nUnloading RerHack.club");
         if (unload) {
             reloadManager = new ReloadManager();
             reloadManager.init(commandManager != null ? commandManager.getPrefix() : ".");
         }
-        ShrimpHack.onUnload();
+        RerHack.onUnload();
         eventManager = null;
         friendManager = null;
         speedManager = null;
@@ -100,19 +100,19 @@ public class ShrimpHack {
         inventoryManager = null;
         moduleManager = null;
         textManager = null;
-        LOGGER.info("ShrimpHack.club unloaded!\n");
+        LOGGER.info("RerHack.club unloaded!\n");
     }
 
     public static void reload() {
-        ShrimpHack.unload(false);
-        ShrimpHack.load();
+        RerHack.unload(false);
+        RerHack.load();
     }
 
     public static void onUnload() {
         if (!unloaded) {
             eventManager.onUnload();
             moduleManager.onUnload();
-            configManager.saveConfig(ShrimpHack.configManager.config.replaceFirst("oyvey/", ""));
+            configManager.saveConfig(RerHack.configManager.config.replaceFirst("oyvey/", ""));
             moduleManager.onUnloadPost();
             unloaded = true;
         }
@@ -120,21 +120,13 @@ public class ShrimpHack {
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
-        LOGGER.info("a" +
-                "a" +
-                "a" +
-                "a" +
-                "a" +
-                "a" +
-                "a" +
-                "a" +
-                "a");
+        LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");
     }
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
-        Display.setTitle("ShrimpHack.club v0.3");
-        ShrimpHack.load();
+        Display.setTitle("RerHack.club v0.3");
+        RerHack.load();
         DiscordPresence.start();
     }
 }

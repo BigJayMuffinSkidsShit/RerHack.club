@@ -2,7 +2,7 @@ package club.shrimphack.swag.manager;
 
 import club.shrimphack.swag.util.Util;
 import com.google.gson.*;
-import club.shrimphack.swag.ShrimpHack;
+import club.shrimphack.swag.RerHack;
 import club.shrimphack.swag.features.Feature;
 import club.shrimphack.swag.features.modules.Module;
 import club.shrimphack.swag.features.setting.Bind;
@@ -52,7 +52,7 @@ public class ConfigManager implements Util {
                 }
                 return;
         }
-        ShrimpHack.LOGGER.error("Unknown Setting type for: " + feature.getName() + " : " + setting.getName());
+        RerHack.LOGGER.error("Unknown Setting type for: " + feature.getName() + " : " + setting.getName());
     }
 
     private static void loadFile(JsonObject input, Feature feature) {
@@ -61,7 +61,7 @@ public class ConfigManager implements Util {
             JsonElement element = entry.getValue();
             if (feature instanceof FriendManager) {
                 try {
-                    ShrimpHack.friendManager.addFriend(new FriendManager.Friend(element.getAsString(), UUID.fromString(settingName)));
+                    RerHack.friendManager.addFriend(new FriendManager.Friend(element.getAsString(), UUID.fromString(settingName)));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -89,7 +89,7 @@ public class ConfigManager implements Util {
         } else {
             this.config = "oyvey/config/";
         }
-        ShrimpHack.friendManager.onLoad();
+        RerHack.friendManager.onLoad();
         for (Feature feature : this.features) {
             try {
                 loadSettings(feature);
@@ -110,7 +110,7 @@ public class ConfigManager implements Util {
         File path = new File(this.config);
         if (!path.exists())
             path.mkdir();
-        ShrimpHack.friendManager.saveFriends();
+        RerHack.friendManager.saveFriends();
         for (Feature feature : this.features) {
             try {
                 saveSettings(feature);
@@ -181,11 +181,11 @@ public class ConfigManager implements Util {
     }
 
     public void init() {
-        this.features.addAll(ShrimpHack.moduleManager.modules);
-        this.features.add(ShrimpHack.friendManager);
+        this.features.addAll(RerHack.moduleManager.modules);
+        this.features.add(RerHack.friendManager);
         String name = loadCurrentConfig();
         loadConfig(name);
-        ShrimpHack.LOGGER.info("Config loaded.");
+        RerHack.LOGGER.info("Config loaded.");
     }
 
     private void loadSettings(Feature feature) throws IOException {
@@ -201,7 +201,7 @@ public class ConfigManager implements Util {
         try {
             loadFile((new JsonParser()).parse(new InputStreamReader(stream)).getAsJsonObject(), feature);
         } catch (IllegalStateException e) {
-            ShrimpHack.LOGGER.error("Bad Config File for: " + feature.getName() + ". Resetting...");
+            RerHack.LOGGER.error("Bad Config File for: " + feature.getName() + ". Resetting...");
             loadFile(new JsonObject(), feature);
         }
         stream.close();

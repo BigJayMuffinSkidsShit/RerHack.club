@@ -8,7 +8,7 @@ import club.shrimphack.swag.features.setting.Setting;
 import club.shrimphack.swag.util.*;
 import club.shrimphack.swag.util.Timer;
 import com.mojang.realmsclient.gui.ChatFormatting;
-import club.shrimphack.swag.ShrimpHack;
+import club.shrimphack.swag.RerHack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.init.Items;
@@ -90,7 +90,7 @@ public class HUD extends Module {
         int height = this.renderer.scaledHeight;
         this.color = ColorUtil.toRGBA((ClickGui.getInstance()).red.getValue().intValue(), (ClickGui.getInstance()).green.getValue().intValue(), (ClickGui.getInstance()).blue.getValue().intValue());
         if (this.waterMark.getValue().booleanValue()) {
-            String string = "ShrimpHack.club" + " v0.0.3";
+            String string = "RerHack.club" + " v0.0.3";
             if ((ClickGui.getInstance()).rainbow.getValue().booleanValue()) {
                 if ((ClickGui.getInstance()).rainbowModeHud.getValue() == ClickGui.rainbowMode.Static) {
                     this.renderer.drawString(string, 2.0F, this.waterMarkY.getValue().intValue(), ColorUtil.rainbow((ClickGui.getInstance()).rainbowHue.getValue().intValue()).getRGB(), true);
@@ -113,15 +113,15 @@ public class HUD extends Module {
         if (this.arrayList.getValue().booleanValue())
             if (this.renderingUp.getValue().booleanValue()) {
                 if (this.renderingMode.getValue() == RenderingMode.ABC) {
-                    for (int k = 0; k < ShrimpHack.moduleManager.sortedModulesABC.size(); k++) {
-                        String str = ShrimpHack.moduleManager.sortedModulesABC.get(k);
+                    for (int k = 0; k < RerHack.moduleManager.sortedModulesABC.size(); k++) {
+                        String str = RerHack.moduleManager.sortedModulesABC.get(k);
                         this.renderer.drawString(str, (width - 2 - this.renderer.getStringWidth(str)), (2 + j * 10), (ClickGui.getInstance()).rainbow.getValue().booleanValue() ? (((ClickGui.getInstance()).rainbowModeA.getValue() == ClickGui.rainbowModeArray.Up) ? ColorUtil.rainbow(counter1[0] * (ClickGui.getInstance()).rainbowHue.getValue().intValue()).getRGB() : ColorUtil.rainbow((ClickGui.getInstance()).rainbowHue.getValue().intValue()).getRGB()) : this.color, true);
                         j++;
                         counter1[0] = counter1[0] + 1;
                     }
                 } else {
-                    for (int k = 0; k < ShrimpHack.moduleManager.sortedModules.size(); k++) {
-                        Module module = ShrimpHack.moduleManager.sortedModules.get(k);
+                    for (int k = 0; k < RerHack.moduleManager.sortedModules.size(); k++) {
+                        Module module = RerHack.moduleManager.sortedModules.get(k);
                         String str = module.getDisplayName() + ChatFormatting.GRAY + ((module.getDisplayInfo() != null) ? (" [" + ChatFormatting.WHITE + module.getDisplayInfo() + ChatFormatting.GRAY + "]") : "");
                         this.renderer.drawString(str, (width - 2 - this.renderer.getStringWidth(str)), (2 + j * 10), (ClickGui.getInstance()).rainbow.getValue().booleanValue() ? (((ClickGui.getInstance()).rainbowModeA.getValue() == ClickGui.rainbowModeArray.Up) ? ColorUtil.rainbow(counter1[0] * (ClickGui.getInstance()).rainbowHue.getValue().intValue()).getRGB() : ColorUtil.rainbow((ClickGui.getInstance()).rainbowHue.getValue().intValue()).getRGB()) : this.color, true);
                         j++;
@@ -129,15 +129,15 @@ public class HUD extends Module {
                     }
                 }
             } else if (this.renderingMode.getValue() == RenderingMode.ABC) {
-                for (int k = 0; k < ShrimpHack.moduleManager.sortedModulesABC.size(); k++) {
-                    String str = ShrimpHack.moduleManager.sortedModulesABC.get(k);
+                for (int k = 0; k < RerHack.moduleManager.sortedModulesABC.size(); k++) {
+                    String str = RerHack.moduleManager.sortedModulesABC.get(k);
                     j += 10;
                     this.renderer.drawString(str, (width - 2 - this.renderer.getStringWidth(str)), (height - j), (ClickGui.getInstance()).rainbow.getValue().booleanValue() ? (((ClickGui.getInstance()).rainbowModeA.getValue() == ClickGui.rainbowModeArray.Up) ? ColorUtil.rainbow(counter1[0] * (ClickGui.getInstance()).rainbowHue.getValue().intValue()).getRGB() : ColorUtil.rainbow((ClickGui.getInstance()).rainbowHue.getValue().intValue()).getRGB()) : this.color, true);
                     counter1[0] = counter1[0] + 1;
                 }
             } else {
-                for (int k = 0; k < ShrimpHack.moduleManager.sortedModules.size(); k++) {
-                    Module module = ShrimpHack.moduleManager.sortedModules.get(k);
+                for (int k = 0; k < RerHack.moduleManager.sortedModules.size(); k++) {
+                    Module module = RerHack.moduleManager.sortedModules.get(k);
                     String str = module.getDisplayName() + ChatFormatting.GRAY + ((module.getDisplayInfo() != null) ? (" [" + ChatFormatting.WHITE + module.getDisplayInfo() + ChatFormatting.GRAY + "]") : "");
                     j += 10;
                     this.renderer.drawString(str, (width - 2 - this.renderer.getStringWidth(str)), (height - j), (ClickGui.getInstance()).rainbow.getValue().booleanValue() ? (((ClickGui.getInstance()).rainbowModeA.getValue() == ClickGui.rainbowModeArray.Up) ? ColorUtil.rainbow(counter1[0] * (ClickGui.getInstance()).rainbowHue.getValue().intValue()).getRGB() : ColorUtil.rainbow((ClickGui.getInstance()).rainbowHue.getValue().intValue()).getRGB()) : this.color, true);
@@ -150,13 +150,13 @@ public class HUD extends Module {
             if (this.potions.getValue().booleanValue()) {
                 List<PotionEffect> effects = new ArrayList<>((Minecraft.getMinecraft()).player.getActivePotionEffects());
                 for (PotionEffect potionEffect : effects) {
-                    String str = ShrimpHack.potionManager.getColoredPotionString(potionEffect);
+                    String str = RerHack.potionManager.getColoredPotionString(potionEffect);
                     i += 10;
                     this.renderer.drawString(str, (width - this.renderer.getStringWidth(str) - 2), (height - 2 - i), potionEffect.getPotion().getLiquidColor(), true);
                 }
             }
             if (this.speed.getValue().booleanValue()) {
-                String str = grayString + "Speed " + ChatFormatting.WHITE + ShrimpHack.speedManager.getSpeedKpH() + " km/h";
+                String str = grayString + "Speed " + ChatFormatting.WHITE + RerHack.speedManager.getSpeedKpH() + " km/h";
                 i += 10;
                 this.renderer.drawString(str, (width - this.renderer.getStringWidth(str) - 2), (height - 2 - i), (ClickGui.getInstance()).rainbow.getValue().booleanValue() ? (((ClickGui.getInstance()).rainbowModeA.getValue() == ClickGui.rainbowModeArray.Up) ? ColorUtil.rainbow(counter1[0] * (ClickGui.getInstance()).rainbowHue.getValue().intValue()).getRGB() : ColorUtil.rainbow((ClickGui.getInstance()).rainbowHue.getValue().intValue()).getRGB()) : this.color, true);
                 counter1[0] = counter1[0] + 1;
@@ -168,13 +168,13 @@ public class HUD extends Module {
                 counter1[0] = counter1[0] + 1;
             }
             if (this.tps.getValue().booleanValue()) {
-                String str = grayString + "TPS " + ChatFormatting.WHITE + ShrimpHack.serverManager.getTPS();
+                String str = grayString + "TPS " + ChatFormatting.WHITE + RerHack.serverManager.getTPS();
                 i += 10;
                 this.renderer.drawString(str, (width - this.renderer.getStringWidth(str) - 2), (height - 2 - i), (ClickGui.getInstance()).rainbow.getValue().booleanValue() ? (((ClickGui.getInstance()).rainbowModeA.getValue() == ClickGui.rainbowModeArray.Up) ? ColorUtil.rainbow(counter1[0] * (ClickGui.getInstance()).rainbowHue.getValue().intValue()).getRGB() : ColorUtil.rainbow((ClickGui.getInstance()).rainbowHue.getValue().intValue()).getRGB()) : this.color, true);
                 counter1[0] = counter1[0] + 1;
             }
             String fpsText = grayString + "FPS " + ChatFormatting.WHITE + Minecraft.getDebugFPS();
-            String str1 = grayString + "Ping " + ChatFormatting.WHITE + ShrimpHack.serverManager.getPing();
+            String str1 = grayString + "Ping " + ChatFormatting.WHITE + RerHack.serverManager.getPing();
             if (this.renderer.getStringWidth(str1) > this.renderer.getStringWidth(fpsText)) {
                 if (this.ping.getValue().booleanValue()) {
                     i += 10;
@@ -202,12 +202,12 @@ public class HUD extends Module {
             if (this.potions.getValue().booleanValue()) {
                 List<PotionEffect> effects = new ArrayList<>((Minecraft.getMinecraft()).player.getActivePotionEffects());
                 for (PotionEffect potionEffect : effects) {
-                    String str = ShrimpHack.potionManager.getColoredPotionString(potionEffect);
+                    String str = RerHack.potionManager.getColoredPotionString(potionEffect);
                     this.renderer.drawString(str, (width - this.renderer.getStringWidth(str) - 2), (2 + i++ * 10), potionEffect.getPotion().getLiquidColor(), true);
                 }
             }
             if (this.speed.getValue().booleanValue()) {
-                String str = grayString + "Speed " + ChatFormatting.WHITE + ShrimpHack.speedManager.getSpeedKpH() + " km/h";
+                String str = grayString + "Speed " + ChatFormatting.WHITE + RerHack.speedManager.getSpeedKpH() + " km/h";
                 this.renderer.drawString(str, (width - this.renderer.getStringWidth(str) - 2), (2 + i++ * 10), (ClickGui.getInstance()).rainbow.getValue().booleanValue() ? (((ClickGui.getInstance()).rainbowModeA.getValue() == ClickGui.rainbowModeArray.Up) ? ColorUtil.rainbow(counter1[0] * (ClickGui.getInstance()).rainbowHue.getValue().intValue()).getRGB() : ColorUtil.rainbow((ClickGui.getInstance()).rainbowHue.getValue().intValue()).getRGB()) : this.color, true);
                 counter1[0] = counter1[0] + 1;
             }
@@ -217,12 +217,12 @@ public class HUD extends Module {
                 counter1[0] = counter1[0] + 1;
             }
             if (this.tps.getValue().booleanValue()) {
-                String str = grayString + "TPS " + ChatFormatting.WHITE + ShrimpHack.serverManager.getTPS();
+                String str = grayString + "TPS " + ChatFormatting.WHITE + RerHack.serverManager.getTPS();
                 this.renderer.drawString(str, (width - this.renderer.getStringWidth(str) - 2), (2 + i++ * 10), (ClickGui.getInstance()).rainbow.getValue().booleanValue() ? (((ClickGui.getInstance()).rainbowModeA.getValue() == ClickGui.rainbowModeArray.Up) ? ColorUtil.rainbow(counter1[0] * (ClickGui.getInstance()).rainbowHue.getValue().intValue()).getRGB() : ColorUtil.rainbow((ClickGui.getInstance()).rainbowHue.getValue().intValue()).getRGB()) : this.color, true);
                 counter1[0] = counter1[0] + 1;
             }
             String fpsText = grayString + "FPS " + ChatFormatting.WHITE + Minecraft.getDebugFPS();
-            String str1 = grayString + "Ping " + ChatFormatting.WHITE + ShrimpHack.serverManager.getPing();
+            String str1 = grayString + "Ping " + ChatFormatting.WHITE + RerHack.serverManager.getPing();
             if (this.renderer.getStringWidth(str1) > this.renderer.getStringWidth(fpsText)) {
                 if (this.ping.getValue().booleanValue()) {
                     this.renderer.drawString(str1, (width - this.renderer.getStringWidth(str1) - 2), (2 + i++ * 10), (ClickGui.getInstance()).rainbow.getValue().booleanValue() ? (((ClickGui.getInstance()).rainbowModeA.getValue() == ClickGui.rainbowModeArray.Up) ? ColorUtil.rainbow(counter1[0] * (ClickGui.getInstance()).rainbowHue.getValue().intValue()).getRGB() : ColorUtil.rainbow((ClickGui.getInstance()).rainbowHue.getValue().intValue()).getRGB()) : this.color, true);
@@ -252,7 +252,7 @@ public class HUD extends Module {
         int hposZ = (int) (Util.mc.player.posZ * nether);
         i = (Util.mc.currentScreen instanceof net.minecraft.client.gui.GuiChat) ? 14 : 0;
         String coordinates = ChatFormatting.WHITE + "XYZ " + ChatFormatting.RESET + (inHell ? (posX + ", " + posY + ", " + posZ + ChatFormatting.WHITE + " [" + ChatFormatting.RESET + hposX + ", " + hposZ + ChatFormatting.WHITE + "]" + ChatFormatting.RESET) : (posX + ", " + posY + ", " + posZ + ChatFormatting.WHITE + " [" + ChatFormatting.RESET + hposX + ", " + hposZ + ChatFormatting.WHITE + "]"));
-        String direction = this.direction.getValue().booleanValue() ? ShrimpHack.rotationManager.getDirection4D(false) : "";
+        String direction = this.direction.getValue().booleanValue() ? RerHack.rotationManager.getDirection4D(false) : "";
         String coords = this.coords.getValue().booleanValue() ? coordinates : "";
         i += 10;
         if ((ClickGui.getInstance()).rainbow.getValue().booleanValue()) {
@@ -321,8 +321,8 @@ public class HUD extends Module {
 
     public void renderLag() {
         int width = this.renderer.scaledWidth;
-        if (ShrimpHack.serverManager.isServerNotResponding()) {
-            String text = ChatFormatting.RED + "Server not responding " + MathUtil.round((float) ShrimpHack.serverManager.serverRespondingTime() / 1000.0F, 1) + "s.";
+        if (RerHack.serverManager.isServerNotResponding()) {
+            String text = ChatFormatting.RED + "Server not responding " + MathUtil.round((float) RerHack.serverManager.serverRespondingTime() / 1000.0F, 1) + "s.";
             this.renderer.drawString(text, width / 2.0F - this.renderer.getStringWidth(text) / 2.0F + 2.0F, 20.0F, this.color, true);
         }
     }
@@ -392,14 +392,14 @@ public class HUD extends Module {
     }
 
     public void onLoad() {
-        ShrimpHack.commandManager.setClientMessage(getCommandMessage());
+        RerHack.commandManager.setClientMessage(getCommandMessage());
     }
 
     @SubscribeEvent
     public void onSettingChange(ClientEvent event) {
         if (event.getStage() == 2 &&
                 equals(event.getSetting().getFeature()))
-            ShrimpHack.commandManager.setClientMessage(getCommandMessage());
+            RerHack.commandManager.setClientMessage(getCommandMessage());
     }
 
     public String getCommandMessage() {

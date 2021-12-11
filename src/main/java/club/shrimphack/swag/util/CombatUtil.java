@@ -1,6 +1,6 @@
 package club.shrimphack.swag.util;
 
-import club.shrimphack.swag.ShrimpHack;
+import club.shrimphack.swag.RerHack;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockAir;
 import net.minecraft.block.BlockLiquid;
@@ -473,7 +473,7 @@ public class CombatUtil {
             areAllInvalid = threads.stream().noneMatch(thread -> thread.isValid && thread.isInterrupted());
         } while (finalPos == null && !areAllInvalid);
 
-        ShrimpHack.LOGGER.info(finalPos == null ? "pos was null" : finalPos.toString());
+        RerHack.LOGGER.info(finalPos == null ? "pos was null" : finalPos.toString());
         return finalPos;
     }
 
@@ -520,7 +520,7 @@ public class CombatUtil {
                                 if (!rayTrace || rayTraceRangeCheck(pos, wallsRange, 0.0d)) {
                                     this.isValid = true;
                                     this.info = new CombatPosInfo(this.player, this.pos, this.damage);
-                                    ShrimpHack.LOGGER.info("Pos was valid.");
+                                    RerHack.LOGGER.info("Pos was valid.");
                                     return;
                                 }
                             }
@@ -530,7 +530,7 @@ public class CombatUtil {
             }
             this.isValid = false;
             this.info = new CombatPosInfo(this.player, this.pos, -1.0f);
-            ShrimpHack.LOGGER.info("Pos was invalid.");
+            RerHack.LOGGER.info("Pos was invalid.");
         }
 
     }

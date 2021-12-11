@@ -1,6 +1,6 @@
 package club.shrimphack.swag.util;
 
-import club.shrimphack.swag.ShrimpHack;
+import club.shrimphack.swag.RerHack;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -1213,8 +1213,8 @@ public class RenderUtil implements Util
         GlStateManager.pushMatrix();
         glBillboardDistanceScaled(pos.getX() + 0.5f, pos.getY() + 0.5f, pos.getZ() + 0.5f, (EntityPlayer)RenderUtil.mc.player, 1.0f);
         GlStateManager.disableDepth();
-        GlStateManager.translate(-(ShrimpHack.textManager.getStringWidth(text) / 2.0), 0.0, 0.0);
-        ShrimpHack.textManager.drawStringWithShadow(text, 0.0f, 0.0f, -5592406);
+        GlStateManager.translate(-(RerHack.textManager.getStringWidth(text) / 2.0), 0.0, 0.0);
+        RerHack.textManager.drawStringWithShadow(text, 0.0f, 0.0f, -5592406);
         GlStateManager.popMatrix();
     }
 

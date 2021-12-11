@@ -6,7 +6,7 @@ import club.shrimphack.swag.features.setting.Setting;
 import club.shrimphack.swag.util.RenderUtil;
 import club.shrimphack.swag.util.Util;
 import com.mojang.realmsclient.gui.ChatFormatting;
-import club.shrimphack.swag.ShrimpHack;
+import club.shrimphack.swag.RerHack;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.init.SoundEvents;
 
@@ -22,8 +22,8 @@ public class UnlimitedSlider
 
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-        RenderUtil.drawRect(this.x, this.y, this.x + (float) this.width + 7.4f, this.y + (float) this.height - 0.5f, !this.isHovering(mouseX, mouseY) ? ShrimpHack.colorManager.getColorWithAlpha(ShrimpHack.moduleManager.getModuleByClass(ClickGui.class).hoverAlpha.getValue()) : ShrimpHack.colorManager.getColorWithAlpha(ShrimpHack.moduleManager.getModuleByClass(ClickGui.class).alpha.getValue()));
-        ShrimpHack.textManager.drawStringWithShadow(" - " + this.setting.getName() + " " + ChatFormatting.GRAY + this.setting.getValue() + ChatFormatting.WHITE + " +", this.x + 2.3f, this.y - 1.7f - (float) OyVeyGui.getClickGui().getTextOffset(), this.getState() ? -1 : -5592406);
+        RenderUtil.drawRect(this.x, this.y, this.x + (float) this.width + 7.4f, this.y + (float) this.height - 0.5f, !this.isHovering(mouseX, mouseY) ? RerHack.colorManager.getColorWithAlpha(RerHack.moduleManager.getModuleByClass(ClickGui.class).hoverAlpha.getValue()) : RerHack.colorManager.getColorWithAlpha(RerHack.moduleManager.getModuleByClass(ClickGui.class).alpha.getValue()));
+        RerHack.textManager.drawStringWithShadow(" - " + this.setting.getName() + " " + ChatFormatting.GRAY + this.setting.getValue() + ChatFormatting.WHITE + " +", this.x + 2.3f, this.y - 1.7f - (float) OyVeyGui.getClickGui().getTextOffset(), this.getState() ? -1 : -5592406);
     }
 
     @Override

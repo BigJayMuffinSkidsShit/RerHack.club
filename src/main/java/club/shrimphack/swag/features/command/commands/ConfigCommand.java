@@ -2,7 +2,7 @@ package club.shrimphack.swag.features.command.commands;
 
 import club.shrimphack.swag.features.command.Command;
 import com.mojang.realmsclient.gui.ChatFormatting;
-import club.shrimphack.swag.ShrimpHack;
+import club.shrimphack.swag.RerHack;
 
 import java.io.File;
 import java.util.Arrays;
@@ -35,12 +35,12 @@ public class ConfigCommand extends Command {
         if (commands.length >= 3) {
             switch (commands[0]) {
                 case "save":
-                    ShrimpHack.configManager.saveConfig(commands[1]);
+                    RerHack.configManager.saveConfig(commands[1]);
                     sendMessage(ChatFormatting.GREEN + "Config '" + commands[1] + "' has been saved.");
                     return;
                 case "load":
-                    if (ShrimpHack.configManager.configExists(commands[1])) {
-                        ShrimpHack.configManager.loadConfig(commands[1]);
+                    if (RerHack.configManager.configExists(commands[1])) {
+                        RerHack.configManager.loadConfig(commands[1]);
                         sendMessage(ChatFormatting.GREEN + "Config '" + commands[1] + "' has been loaded.");
                     } else {
                         sendMessage(ChatFormatting.RED + "Config '" + commands[1] + "' does not exist.");

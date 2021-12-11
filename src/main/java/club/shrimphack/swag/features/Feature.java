@@ -2,7 +2,7 @@ package club.shrimphack.swag.features;
 
 import club.shrimphack.swag.manager.TextManager;
 import club.shrimphack.swag.util.Util;
-import club.shrimphack.swag.ShrimpHack;
+import club.shrimphack.swag.RerHack;
 import club.shrimphack.swag.features.gui.OyVeyGui;
 import club.shrimphack.swag.features.modules.Module;
 import club.shrimphack.swag.features.setting.Setting;
@@ -13,7 +13,7 @@ import java.util.List;
 public class Feature
         implements Util {
     public List<Setting> settings = new ArrayList<Setting>();
-    public TextManager renderer = ShrimpHack.textManager;
+    public TextManager renderer = RerHack.textManager;
     private String name;
 
     public Feature() {

@@ -6,7 +6,7 @@ import club.shrimphack.swag.features.gui.OyVeyGui;
 import club.shrimphack.swag.features.modules.Module;
 import club.shrimphack.swag.features.setting.Setting;
 import com.mojang.realmsclient.gui.ChatFormatting;
-import club.shrimphack.swag.ShrimpHack;
+import club.shrimphack.swag.RerHack;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.util.ResourceLocation;
@@ -23,13 +23,13 @@ public class ClickGui
     public Setting<Boolean> gradient = this.register(new Setting<Boolean>("Gradient", false));
     public Setting<Boolean> customFov = this.register(new Setting<Boolean>("CustomFov", false));
     public Setting<Float> fov = this.register(new Setting<Float>("Fov", Float.valueOf(150.0f), Float.valueOf(-180.0f), Float.valueOf(180.0f)));
-    public Setting<Integer> red = this.register(new Setting<Integer>("Red", 0, 0, 255));
-    public Setting<Integer> green = this.register(new Setting<Integer>("Green", 0, 0, 255));
-    public Setting<Integer> blue = this.register(new Setting<Integer>("Blue", 255, 0, 255));
-    public Setting<Integer> hoverAlpha = this.register(new Setting<Integer>("Alpha", 180, 0, 255));
-    public Setting<Integer> topRed = this.register(new Setting<Integer>("SecondRed", 0, 0, 255));
-    public Setting<Integer> topGreen = this.register(new Setting<Integer>("SecondGreen", 0, 0, 255));
-    public Setting<Integer> topBlue = this.register(new Setting<Integer>("SecondBlue", 150, 0, 255));
+    public Setting<Integer> red = this.register(new Setting<Integer>("Red", 255, 0, 255));
+    public Setting<Integer> green = this.register(new Setting<Integer>("Green", 120, 0, 255));
+    public Setting<Integer> blue = this.register(new Setting<Integer>("Blue", 0, 0, 255));
+    public Setting<Integer> hoverAlpha = this.register(new Setting<Integer>("Alpha", 255, 0, 255));
+    public Setting<Integer> topRed = this.register(new Setting<Integer>("SecondRed", 255, 0, 255));
+    public Setting<Integer> topGreen = this.register(new Setting<Integer>("SecondGreen", 120, 0, 255));
+    public Setting<Integer> topBlue = this.register(new Setting<Integer>("SecondBlue", 255, 0, 255));
     public Setting<Integer> alpha = this.register(new Setting<Integer>("HoverAlpha", 240, 0, 255));
     public Setting<Boolean> rainbow = this.register(new Setting<Boolean>("Rainbow", false));
     public Setting<rainbowMode> rainbowModeHud = this.register(new Setting<Object>("HRainbowMode", rainbowMode.Static, v -> this.rainbow.getValue()));
@@ -67,10 +67,10 @@ public class ClickGui
     public void onSettingChange(ClientEvent event) {
         if (event.getStage() == 2 && event.getSetting().getFeature().equals(this)) {
             if (event.getSetting().equals(this.prefix)) {
-                ShrimpHack.commandManager.setPrefix(this.prefix.getPlannedValue());
-                Command.sendMessage("Prefix set to " + ChatFormatting.DARK_GRAY + ShrimpHack.commandManager.getPrefix());
+                RerHack.commandManager.setPrefix(this.prefix.getPlannedValue());
+                Command.sendMessage("Prefix set to " + ChatFormatting.DARK_GRAY + RerHack.commandManager.getPrefix());
             }
-            ShrimpHack.colorManager.setColor(this.red.getPlannedValue(), this.green.getPlannedValue(), this.blue.getPlannedValue(), this.hoverAlpha.getPlannedValue());
+            RerHack.colorManager.setColor(this.red.getPlannedValue(), this.green.getPlannedValue(), this.blue.getPlannedValue(), this.hoverAlpha.getPlannedValue());
         }
     }
 
@@ -84,8 +84,8 @@ public class ClickGui
 
     @Override
     public void onLoad() {
-        ShrimpHack.colorManager.setColor(this.red.getValue(), this.green.getValue(), this.blue.getValue(), this.hoverAlpha.getValue());
-        ShrimpHack.commandManager.setPrefix(this.prefix.getValue());
+        RerHack.colorManager.setColor(this.red.getValue(), this.green.getValue(), this.blue.getValue(), this.hoverAlpha.getValue());
+        RerHack.commandManager.setPrefix(this.prefix.getValue());
     }
 
     @Override

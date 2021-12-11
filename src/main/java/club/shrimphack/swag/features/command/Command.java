@@ -1,8 +1,7 @@
 package club.shrimphack.swag.features.command;
 
 import club.shrimphack.swag.features.Feature;
-import com.mojang.realmsclient.gui.ChatFormatting;
-import club.shrimphack.swag.ShrimpHack;
+import club.shrimphack.swag.RerHack;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentBase;
 import net.minecraft.util.text.TextComponentString;
@@ -28,13 +27,13 @@ public abstract class Command
     }
 
     public static void sendMessage(String message, boolean notification) {
-        Command.sendSilentMessage(ShrimpHack.commandManager.getClientMessage() + " " + "\u00a7r" + message);
+        Command.sendSilentMessage(RerHack.commandManager.getClientMessage() + " " + "\u00a7r" + message);
         if (notification) {
         }
     }
 
     public static void sendMessage(String message) {
-        Command.sendSilentMessage(ShrimpHack.commandManager.getClientMessage() + " " + "\u00a7r" + message);
+        Command.sendSilentMessage(RerHack.commandManager.getClientMessage() + " " + "\u00a7r" + message);
     }
 
     public static void sendSilentMessage(String message) {
@@ -58,7 +57,7 @@ public abstract class Command
     }
 
     public static String getCommandPrefix() {
-        return ShrimpHack.commandManager.getPrefix();
+        return RerHack.commandManager.getPrefix();
     }
 
     public abstract void execute(String[] var1);

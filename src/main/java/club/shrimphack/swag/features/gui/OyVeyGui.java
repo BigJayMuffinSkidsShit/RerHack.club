@@ -1,7 +1,7 @@
 package club.shrimphack.swag.features.gui;
 
 import club.shrimphack.swag.features.Feature;
-import club.shrimphack.swag.ShrimpHack;
+import club.shrimphack.swag.RerHack;
 import club.shrimphack.swag.features.gui.components.Component;
 import club.shrimphack.swag.features.gui.components.items.Item;
 import club.shrimphack.swag.features.gui.components.items.buttons.ModuleButton;
@@ -64,13 +64,13 @@ public class OyVeyGui
             }
         }
         int x = -84;
-        for (final Module.Category category : ShrimpHack.moduleManager.getCategories()) {
+        for (final Module.Category category : RerHack.moduleManager.getCategories()) {
             this.components.add(new Component(category.getName(), x += 90, 4, true) {
 
                 @Override
                 public void setupItems() {
                     counter1 = new int[]{1};
-                    ShrimpHack.moduleManager.getModulesByCategory(category).forEach(module -> {
+                    RerHack.moduleManager.getModulesByCategory(category).forEach(module -> {
                         if (!module.hidden) {
                             this.addButton(new ModuleButton(module));
                         }

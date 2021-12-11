@@ -6,7 +6,7 @@ import club.shrimphack.swag.features.setting.Setting;
 import club.shrimphack.swag.manager.ConfigManager;
 import com.google.gson.JsonParser;
 import com.mojang.realmsclient.gui.ChatFormatting;
-import club.shrimphack.swag.ShrimpHack;
+import club.shrimphack.swag.RerHack;
 
 public class ModuleCommand
         extends Command {
@@ -19,18 +19,18 @@ public class ModuleCommand
         Setting setting;
         if (commands.length == 1) {
             ModuleCommand.sendMessage("Modules: ");
-            for (Module.Category category : ShrimpHack.moduleManager.getCategories()) {
+            for (Module.Category category : RerHack.moduleManager.getCategories()) {
                 String modules = category.getName() + ": ";
-                for (Module module1 : ShrimpHack.moduleManager.getModulesByCategory(category)) {
+                for (Module module1 : RerHack.moduleManager.getModulesByCategory(category)) {
                     modules = modules + (module1.isEnabled() ? ChatFormatting.GREEN : ChatFormatting.RED) + module1.getName() + ChatFormatting.WHITE + ", ";
                 }
                 ModuleCommand.sendMessage(modules);
             }
             return;
         }
-        Module module = ShrimpHack.moduleManager.getModuleByDisplayName(commands[0]);
+        Module module = RerHack.moduleManager.getModuleByDisplayName(commands[0]);
         if (module == null) {
-            module = ShrimpHack.moduleManager.getModuleByName(commands[0]);
+            module = RerHack.moduleManager.getModuleByName(commands[0]);
             if (module == null) {
                 ModuleCommand.sendMessage("This module doesnt exist.");
                 return;

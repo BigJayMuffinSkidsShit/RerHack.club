@@ -3,7 +3,7 @@ package club.shrimphack.swag.features.gui.components;
 import club.shrimphack.swag.features.Feature;
 import club.shrimphack.swag.features.gui.OyVeyGui;
 import club.shrimphack.swag.util.RenderUtil;
-import club.shrimphack.swag.ShrimpHack;
+import club.shrimphack.swag.RerHack;
 import club.shrimphack.swag.features.gui.components.items.Item;
 import club.shrimphack.swag.features.gui.components.items.buttons.Button;
 import club.shrimphack.swag.features.modules.client.ClickGui;
@@ -58,7 +58,7 @@ public class Component
         if (this.open) {
             RenderUtil.drawRect(this.x, (float) this.y + 12.5f, this.x + this.width, (float) (this.y + this.height) + totalItemHeight, 0x77000000);
         }
-        ShrimpHack.textManager.drawStringWithShadow(this.getName(), (float) this.x + 3.0f, (float) this.y - 4.0f - (float) OyVeyGui.getClickGui().getTextOffset(), -1);
+        RerHack.textManager.drawStringWithShadow(this.getName(), (float) this.x + 3.0f, (float) this.y - 4.0f - (float) OyVeyGui.getClickGui().getTextOffset(), -1);
         if (this.open) {
             float y = (float) (this.getY() + this.getHeight()) - 3.0f;
             for (Item item : this.getItems()) {

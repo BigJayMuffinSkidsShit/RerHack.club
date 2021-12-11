@@ -1,7 +1,7 @@
 package club.shrimphack.swag.manager;
 
 import club.shrimphack.swag.util.Timer;
-import club.shrimphack.swag.ShrimpHack;
+import club.shrimphack.swag.RerHack;
 import club.shrimphack.swag.features.Feature;
 import club.shrimphack.swag.features.gui.font.CustomFont;
 import club.shrimphack.swag.features.modules.client.FontMod;
@@ -23,7 +23,7 @@ public class TextManager
     }
 
     public void init(boolean startup) {
-        FontMod cFont = ShrimpHack.moduleManager.getModuleByClass(FontMod.class);
+        FontMod cFont = RerHack.moduleManager.getModuleByClass(FontMod.class);
         try {
             this.setFontRenderer(new Font(cFont.fontName.getValue(), cFont.fontStyle.getValue(), cFont.fontSize.getValue()), cFont.antiAlias.getValue(), cFont.fractionalMetrics.getValue());
         } catch (Exception exception) {
@@ -36,7 +36,7 @@ public class TextManager
     }
 
     public void drawString(String text, float x, float y, int color, boolean shadow) {
-        if (ShrimpHack.moduleManager.isModuleEnabled(FontMod.getInstance().getName())) {
+        if (RerHack.moduleManager.isModuleEnabled(FontMod.getInstance().getName())) {
             if (shadow) {
                 this.customFont.drawStringWithShadow(text, x, y, color);
             } else {
@@ -48,14 +48,14 @@ public class TextManager
     }
 
     public int getStringWidth(String text) {
-        if (ShrimpHack.moduleManager.isModuleEnabled(FontMod.getInstance().getName())) {
+        if (RerHack.moduleManager.isModuleEnabled(FontMod.getInstance().getName())) {
             return this.customFont.getStringWidth(text);
         }
         return TextManager.mc.fontRenderer.getStringWidth(text);
     }
 
     public int getFontHeight() {
-        if (ShrimpHack.moduleManager.isModuleEnabled(FontMod.getInstance().getName())) {
+        if (RerHack.moduleManager.isModuleEnabled(FontMod.getInstance().getName())) {
             String text = "A";
             return this.customFont.getStringHeight(text);
         }

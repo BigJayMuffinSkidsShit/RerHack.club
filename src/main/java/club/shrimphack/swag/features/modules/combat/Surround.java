@@ -1,6 +1,6 @@
 package club.shrimphack.swag.features.modules.combat;
 
-import club.shrimphack.swag.ShrimpHack;
+import club.shrimphack.swag.RerHack;
 import club.shrimphack.swag.features.command.Command;
 import club.shrimphack.swag.features.modules.Module;
 import club.shrimphack.swag.features.setting.Setting;
@@ -55,7 +55,7 @@ public class Surround extends Module
         lastHotbarSlot = Surround.mc.player.inventory.currentItem;
         startPos = EntityUtil.getRoundedBlockPos(Surround.mc.player);
         if (center.getValue().booleanValue()) {
-            ShrimpHack.positionManager.setPositionPacket((double) startPos.getX() + 0.5, startPos.getY(), (double) startPos.getZ() + 0.5, true, true, true);
+            RerHack.positionManager.setPositionPacket((double) startPos.getX() + 0.5, startPos.getY(), (double) startPos.getZ() + 0.5, true, true, true);
         }
         retries.clear();
         retryTimer.reset();

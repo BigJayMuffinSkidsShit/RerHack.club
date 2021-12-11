@@ -2,7 +2,7 @@ package club.shrimphack.swag.features.command.commands;
 
 import club.shrimphack.swag.features.command.Command;
 import com.mojang.realmsclient.gui.ChatFormatting;
-import club.shrimphack.swag.ShrimpHack;
+import club.shrimphack.swag.RerHack;
 
 public class HelpCommand
         extends Command {
@@ -13,8 +13,8 @@ public class HelpCommand
     @Override
     public void execute(String[] commands) {
         HelpCommand.sendMessage("Commands: ");
-        for (Command command : ShrimpHack.commandManager.getCommands()) {
-            HelpCommand.sendMessage(ChatFormatting.GRAY + ShrimpHack.commandManager.getPrefix() + command.getName());
+        for (Command command : RerHack.commandManager.getCommands()) {
+            HelpCommand.sendMessage(ChatFormatting.GRAY + RerHack.commandManager.getPrefix() + command.getName());
         }
     }
 }

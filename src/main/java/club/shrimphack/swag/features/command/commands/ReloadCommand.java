@@ -1,7 +1,7 @@
 package club.shrimphack.swag.features.command.commands;
 
 import club.shrimphack.swag.features.command.Command;
-import club.shrimphack.swag.ShrimpHack;
+import club.shrimphack.swag.RerHack;
 
 public class ReloadCommand
         extends Command {
@@ -11,7 +11,7 @@ public class ReloadCommand
 
     @Override
     public void execute(String[] commands) {
-        ShrimpHack.reload();
+        RerHack.reload();
     }
 }
 
