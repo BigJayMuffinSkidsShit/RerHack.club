@@ -1,0 +1,20 @@
+[
+  {
+    "modid": "shrimphack",
+    "name": "ShrimpHack.club",
+    "description": "pee vee pee",
+    "version": "0.0.3",
+    "mcversion": "1.12.2",
+    "logoFile": "",
+    "url": "https://discordapp.com/invite/WcAx3ps",
+    "updateUrl": "",
+    "authorList": [
+      "BigJMuffin",
+      "PunCakeCat",
+      "Dvarfoo/Shutzsaffel",
+      "cpvpfemboi"
+    ],
+    "screenshots": [],
+    "dependencies": []
+  }
+]

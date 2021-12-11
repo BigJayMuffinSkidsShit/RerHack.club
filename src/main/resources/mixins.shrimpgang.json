@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "compatibilityLevel": "JAVA_8",
+  "package": "club.shrimphack.swag.mixin.mixins",
+  "refmap": "mixins.shrimphack.refmap.json",
+  "mixins": [
+    "accessors.IC00Handshake",
+    "accessors.IServerAddress",
+    "accessors.AccessorCPacketUseEntity",
+    "IEntity",
+    "IEntityLivingBase"
+    ]
+    }

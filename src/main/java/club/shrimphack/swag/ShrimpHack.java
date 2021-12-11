@@ -33,6 +33,7 @@ public class ShrimpHack {
     public static EventManager eventManager;
     public static TextManager textManager;
     public static OyVeyGui gui;
+    public static DiscordPresence discordPresence;
     @Mod.Instance
     public static ShrimpHack INSTANCE;
     private static boolean unloaded;
@@ -64,6 +65,7 @@ public class ShrimpHack {
         positionManager = new PositionManager();
         configManager = new ConfigManager();
         holeManager = new HoleManager();
+        discordPresence = new DiscordPresence();
         gui = new OyVeyGui();
         LOGGER.info("Managers loaded.");
         moduleManager.init();
@@ -133,6 +135,7 @@ public class ShrimpHack {
     public void init(FMLInitializationEvent event) {
         Display.setTitle("ShrimpHack.club v0.3");
         ShrimpHack.load();
+        DiscordPresence.start();
     }
 }
 

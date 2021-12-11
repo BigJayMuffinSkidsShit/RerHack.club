@@ -2,7 +2,6 @@ package club.shrimphack.swag.manager;
 
 import club.shrimphack.swag.features.modules.combat.AutoCrystal;
 import club.shrimphack.swag.features.modules.combat.Surround;
-import club.shrimphack.swag.features.modules.misc.BowMcBomb;
 import club.shrimphack.swag.features.modules.movements.Sprint;
 import club.shrimphack.swag.features.modules.movements.Step;
 import club.shrimphack.swag.features.modules.player.FakePlayer;
@@ -42,7 +41,6 @@ public class ModuleManager
         this.modules.add(new ClickGui());
         this.modules.add(new FontMod());
         this.modules.add(new HUD());
-        this.modules.add(new BowMcBomb());
         this.modules.add(new Step());
         this.modules.add(new Sprint());
         this.modules.add(new Surround());
