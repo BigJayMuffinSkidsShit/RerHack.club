@@ -1,13 +1,13 @@
 package club.shrimphack.swag.manager;
 
+import club.shrimphack.swag.features.Feature;
+import club.shrimphack.swag.features.command.Command;
+import club.shrimphack.swag.features.modules.client.HUD;
 import club.shrimphack.swag.event.events.*;
 import club.shrimphack.swag.util.Timer;
 import com.google.common.base.Strings;
 import com.mojang.realmsclient.gui.ChatFormatting;
 import club.shrimphack.swag.RerHack;
-import club.shrimphack.swag.features.Feature;
-import club.shrimphack.swag.features.command.Command;
-import club.shrimphack.swag.features.modules.client.HUD;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;

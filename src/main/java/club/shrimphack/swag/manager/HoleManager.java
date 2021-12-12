@@ -1,7 +1,7 @@
 package club.shrimphack.swag.manager;
 
-import club.shrimphack.swag.util.EntityUtil;
 import club.shrimphack.swag.features.Feature;
+import club.shrimphack.swag.util.EntityUtil;
 import club.shrimphack.swag.util.BlockUtil;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;

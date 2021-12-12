@@ -1,15 +1,15 @@
 package club.shrimphack.swag.features.gui;
 
-import club.shrimphack.swag.features.Feature;
-import club.shrimphack.swag.RerHack;
 import club.shrimphack.swag.features.gui.components.Component;
 import club.shrimphack.swag.features.gui.components.items.Item;
 import club.shrimphack.swag.features.gui.components.items.buttons.ModuleButton;
-import club.shrimphack.swag.features.gui.particle.ParticleSystem;
-import club.shrimphack.swag.features.gui.particle.Snow;
 import club.shrimphack.swag.features.modules.Module;
 import club.shrimphack.swag.features.modules.client.ClickGui;
 import club.shrimphack.swag.features.modules.client.Colors;
+import club.shrimphack.swag.features.Feature;
+import club.shrimphack.swag.RerHack;
+import club.shrimphack.swag.features.gui.particle.ParticleSystem;
+import club.shrimphack.swag.features.gui.particle.Snow;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
 import org.lwjgl.input.Mouse;
@@ -29,7 +29,7 @@ public class OyVeyGui
         INSTANCE = new OyVeyGui();
     }
 
-    private final ArrayList<Component> components = new ArrayList();
+    private final ArrayList<club.shrimphack.swag.features.gui.components.Component> components = new ArrayList();
     private final ParticleSystem particleSystem;
     private ArrayList<Snow> _snowList;
 
@@ -65,7 +65,7 @@ public class OyVeyGui
         }
         int x = -84;
         for (final Module.Category category : RerHack.moduleManager.getCategories()) {
-            this.components.add(new Component(category.getName(), x += 90, 4, true) {
+            this.components.add(new club.shrimphack.swag.features.gui.components.Component(category.getName(), x += 90, 4, true) {
 
                 @Override
                 public void setupItems() {
@@ -82,7 +82,7 @@ public class OyVeyGui
     }
 
     public void updateModule(Module module) {
-        for (Component component : this.components) {
+        for (club.shrimphack.swag.features.gui.components.Component component : this.components) {
             for (Item item : component.getItems()) {
                 if (!(item instanceof ModuleButton)) continue;
                 ModuleButton button = (ModuleButton) item;
@@ -123,7 +123,7 @@ public class OyVeyGui
         return false;
     }
 
-    public final ArrayList<Component> getComponents() {
+    public final ArrayList<club.shrimphack.swag.features.gui.components.Component> getComponents() {
         return this.components;
     }
 
@@ -140,7 +140,7 @@ public class OyVeyGui
         return -6;
     }
 
-    public Component getComponentByName(String name) {
+    public club.shrimphack.swag.features.gui.components.Component getComponentByName(String name) {
         for (Component component : this.components) {
             if (!component.getName().equalsIgnoreCase(name)) continue;
             return component;

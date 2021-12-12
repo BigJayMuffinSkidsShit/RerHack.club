@@ -1,5 +1,11 @@
 package club.shrimphack.swag.manager;
 
+import club.shrimphack.swag.features.Feature;
+import club.shrimphack.swag.features.gui.OyVeyGui;
+import club.shrimphack.swag.features.modules.Module;
+import club.shrimphack.swag.features.modules.client.ClickGui;
+import club.shrimphack.swag.features.modules.client.FontMod;
+import club.shrimphack.swag.features.modules.client.HUD;
 import club.shrimphack.swag.features.modules.combat.AutoCrystal;
 import club.shrimphack.swag.features.modules.combat.Surround;
 import club.shrimphack.swag.features.modules.movements.Sprint;
@@ -13,12 +19,6 @@ import com.mojang.realmsclient.gui.ChatFormatting;
 import club.shrimphack.swag.RerHack;
 import club.shrimphack.swag.event.events.Render2DEvent;
 import club.shrimphack.swag.event.events.Render3DEvent;
-import club.shrimphack.swag.features.Feature;
-import club.shrimphack.swag.features.gui.OyVeyGui;
-import club.shrimphack.swag.features.modules.Module;
-import club.shrimphack.swag.features.modules.client.ClickGui;
-import club.shrimphack.swag.features.modules.client.FontMod;
-import club.shrimphack.swag.features.modules.client.HUD;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.eventhandler.EventBus;
 import org.lwjgl.input.Keyboard;

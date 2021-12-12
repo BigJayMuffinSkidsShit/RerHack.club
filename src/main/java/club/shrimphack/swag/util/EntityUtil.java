@@ -1,6 +1,5 @@
 package club.shrimphack.swag.util;
 
-import club.shrimphack.swag.mixin.mixins.IEntityLivingBase;
 import com.mojang.realmsclient.gui.ChatFormatting;
 import club.shrimphack.swag.RerHack;
 import net.minecraft.block.*;
@@ -927,17 +926,7 @@ public class EntityUtil
         double posZ = (double) forward * speed * sin - (double) side * speed * cos;
         return new double[]{posX, posZ};
     }
-    public static void swingArmNoPacket(final EnumHand hand, final EntityLivingBase entity) {
-        final ItemStack stack = entity.getHeldItem(hand);
-        if (!stack.isEmpty() && stack.getItem().onEntitySwing(entity, stack)) {
-            return;
-        }
-        if (!entity.isSwingInProgress || entity.swingProgressInt >= ((IEntityLivingBase) entity).getArmSwingAnimationEnd() / 2 || entity.swingProgressInt < 0) {
-            entity.swingProgressInt = -1;
-            entity.isSwingInProgress = true;
-            entity.swingingHand = hand;
-        }
-    }
+
 
     public static Map<String, Integer> getTextRadarPlayers() {
         Map<String, Integer> output = new HashMap<String, Integer>();

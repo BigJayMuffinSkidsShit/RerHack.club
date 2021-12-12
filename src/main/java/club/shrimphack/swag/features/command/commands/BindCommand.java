@@ -1,8 +1,8 @@
 package club.shrimphack.swag.features.command.commands;
 
-import club.shrimphack.swag.features.command.Command;
 import club.shrimphack.swag.features.modules.Module;
 import club.shrimphack.swag.features.setting.Bind;
+import club.shrimphack.swag.features.command.Command;
 import com.mojang.realmsclient.gui.ChatFormatting;
 import club.shrimphack.swag.RerHack;
 import org.lwjgl.input.Keyboard;

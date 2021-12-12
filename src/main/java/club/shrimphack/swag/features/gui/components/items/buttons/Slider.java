@@ -1,9 +1,9 @@
 package club.shrimphack.swag.features.gui.components.items.buttons;
 
-import club.shrimphack.swag.features.gui.OyVeyGui;
 import club.shrimphack.swag.features.gui.components.Component;
 import club.shrimphack.swag.features.modules.client.ClickGui;
 import club.shrimphack.swag.features.setting.Setting;
+import club.shrimphack.swag.features.gui.OyVeyGui;
 import club.shrimphack.swag.util.RenderUtil;
 import com.mojang.realmsclient.gui.ChatFormatting;
 import club.shrimphack.swag.RerHack;

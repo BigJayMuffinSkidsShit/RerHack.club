@@ -1,20 +1,17 @@
 package club.shrimphack.swag.features.modules.render;
 
-import club.shrimphack.swag.event.events.Render3DEvent;
-import club.shrimphack.swag.features.modules.Module;
 import club.shrimphack.swag.features.modules.client.ClickGui;
 import club.shrimphack.swag.features.setting.Setting;
-import club.shrimphack.swag.util.*;
-import com.google.common.collect.Sets;
+import club.shrimphack.swag.event.events.Render3DEvent;
+import club.shrimphack.swag.features.modules.Module;
+import club.shrimphack.swag.util.BlockUtil;
+import club.shrimphack.swag.util.ColorUtil;
+import club.shrimphack.swag.util.RenderUtil;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3i;
 
 import java.awt.*;
-import java.util.HashSet;
-import java.util.List;
-import java.util.concurrent.ConcurrentHashMap;
 
 public class HoleESP extends Module {
     public Setting<Boolean> renderOwn = register(new Setting<Boolean>("RenderOwn", true));

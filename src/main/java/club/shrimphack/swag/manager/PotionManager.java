@@ -1,7 +1,7 @@
 package club.shrimphack.swag.manager;
 
-import com.mojang.realmsclient.gui.ChatFormatting;
 import club.shrimphack.swag.features.Feature;
+import com.mojang.realmsclient.gui.ChatFormatting;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;

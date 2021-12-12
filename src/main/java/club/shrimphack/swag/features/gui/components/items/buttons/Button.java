@@ -1,11 +1,11 @@
 package club.shrimphack.swag.features.gui.components.items.buttons;
 
-import club.shrimphack.swag.features.gui.OyVeyGui;
 import club.shrimphack.swag.features.gui.components.Component;
+import club.shrimphack.swag.features.gui.components.items.Item;
 import club.shrimphack.swag.features.modules.client.ClickGui;
+import club.shrimphack.swag.features.gui.OyVeyGui;
 import club.shrimphack.swag.util.RenderUtil;
 import club.shrimphack.swag.RerHack;
-import club.shrimphack.swag.features.gui.components.items.Item;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.init.SoundEvents;
 

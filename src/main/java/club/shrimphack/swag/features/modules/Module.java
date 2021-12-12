@@ -1,15 +1,15 @@
 package club.shrimphack.swag.features.modules;
 
+import club.shrimphack.swag.features.modules.client.HUD;
+import club.shrimphack.swag.features.setting.Bind;
+import club.shrimphack.swag.features.setting.Setting;
 import club.shrimphack.swag.event.events.ClientEvent;
 import club.shrimphack.swag.event.events.Render2DEvent;
 import club.shrimphack.swag.event.events.Render3DEvent;
 import club.shrimphack.swag.features.Feature;
 import club.shrimphack.swag.features.command.Command;
-import club.shrimphack.swag.features.setting.Bind;
 import com.mojang.realmsclient.gui.ChatFormatting;
 import club.shrimphack.swag.RerHack;
-import club.shrimphack.swag.features.modules.client.HUD;
-import club.shrimphack.swag.features.setting.Setting;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.common.MinecraftForge;
 
@@ -45,11 +45,9 @@ public class Module
     }
 
     public void onEnable() {
-        MinecraftForge.EVENT_BUS.register(this);
     }
 
     public void onDisable() {
-        MinecraftForge.EVENT_BUS.unregister(this);
     }
 
     public void onToggle() {

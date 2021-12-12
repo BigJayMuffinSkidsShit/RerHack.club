@@ -1,9 +1,9 @@
 package club.shrimphack.swag.features.modules.client;
 
+import club.shrimphack.swag.features.setting.Setting;
 import club.shrimphack.swag.event.events.ClientEvent;
 import club.shrimphack.swag.features.command.Command;
 import club.shrimphack.swag.features.modules.Module;
-import club.shrimphack.swag.features.setting.Setting;
 import com.mojang.realmsclient.gui.ChatFormatting;
 import club.shrimphack.swag.RerHack;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;

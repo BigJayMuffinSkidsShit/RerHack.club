@@ -9,9 +9,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lwjgl.opengl.Display;
 
-@Mod(modid = "rer", name = "RerHack.club", version = "0.3")
+@Mod(modid = "shrimphack", name = "RerHack.club", version = "0.3")
 public class RerHack {
-    public static final String MODID = "rer";
+    public static final String MODID = "shrimphack";
     public static final String MODNAME = "RerHack.club";
     public static final String MODVER = "0.3";
     public static final Logger LOGGER = LogManager.getLogger("RerHack.club");

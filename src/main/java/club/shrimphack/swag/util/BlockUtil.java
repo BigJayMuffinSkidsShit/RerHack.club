@@ -1,7 +1,7 @@
 package club.shrimphack.swag.util;
 
-import club.shrimphack.swag.RerHack;
 import club.shrimphack.swag.features.command.Command;
+import club.shrimphack.swag.RerHack;
 import com.google.common.util.concurrent.AtomicDouble;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
@@ -38,11 +38,11 @@ public class BlockUtil
 
     public static List<BlockPos> getBlockSphere(float breakRange, Class clazz) {
         NonNullList positions = NonNullList.create();
-        positions.addAll(BlockUtil.getSphere(EntityUtil.getPlayerPos(BlockUtil.mc.player), breakRange, (int) breakRange, false, true, 0).stream().filter(pos -> clazz.isInstance(BlockUtil.mc.world.getBlockState(pos).getBlock())).collect(Collectors.toList()));
+        positions.addAll(BlockUtil.getSphere(EntityUtil.getPlayerPos(mc.player), breakRange, (int) breakRange, false, true, 0).stream().filter(pos -> clazz.isInstance(mc.world.getBlockState(pos).getBlock())).collect(Collectors.toList()));
         return positions;
     }
     public static void placeBlockScaffold(final BlockPos pos) {
-        final Vec3d eyesPos = new Vec3d(BlockUtil.mc.player.posX, BlockUtil.mc.player.posY + BlockUtil.mc.player.getEyeHeight(), BlockUtil.mc.player.posZ);
+        final Vec3d eyesPos = new Vec3d(mc.player.posX, mc.player.posY + mc.player.getEyeHeight(), mc.player.posZ);
         for (final EnumFacing side : EnumFacing.values()) {
             final BlockPos neighbor = pos.offset(side);
             final EnumFacing side2 = side.getOpposite();
@@ -50,23 +50,23 @@ public class BlockUtil
             if (canBeClicked(neighbor) && eyesPos.squareDistanceTo(hitVec = new Vec3d((Vec3i)neighbor).add(0.5, 0.5, 0.5).add(new Vec3d(side2.getDirectionVec()).scale(0.5))) <= 18.0625) {
                 HoleFillUtil.faceVectorPacketInstant(hitVec);
                 HoleFillUtil.processRightClickBlock(neighbor, side2, hitVec);
-                BlockUtil.mc.player.swingArm(EnumHand.MAIN_HAND);
+                mc.player.swingArm(EnumHand.MAIN_HAND);
                 return;
             }
         }
     }
 
     public static double getNearestBlockBelow() {
-        for (double y = BlockUtil.mc.player.posY; y > 0.0; y -= 0.001) {
-            if (BlockUtil.mc.world.getBlockState(new BlockPos(BlockUtil.mc.player.posX, y, BlockUtil.mc.player.posZ)).getBlock() instanceof BlockSlab || BlockUtil.mc.world.getBlockState(new BlockPos(BlockUtil.mc.player.posX, y, BlockUtil.mc.player.posZ)).getBlock().getDefaultState().getCollisionBoundingBox((IBlockAccess)BlockUtil.mc.world, new BlockPos(0, 0, 0)) == null) continue;
+        for (double y = mc.player.posY; y > 0.0; y -= 0.001) {
+            if (mc.world.getBlockState(new BlockPos(mc.player.posX, y, mc.player.posZ)).getBlock() instanceof BlockSlab || mc.world.getBlockState(new BlockPos(mc.player.posX, y, mc.player.posZ)).getBlock().getDefaultState().getCollisionBoundingBox((IBlockAccess) mc.world, new BlockPos(0, 0, 0)) == null) continue;
             return y;
         }
         return -1.0;
     }
 
     public static boolean isInHole() {
-        BlockPos blockPos = new BlockPos(BlockUtil.mc.player.posX, BlockUtil.mc.player.posY, BlockUtil.mc.player.posZ);
-        IBlockState blockState = BlockUtil.mc.world.getBlockState(blockPos);
+        BlockPos blockPos = new BlockPos(mc.player.posX, mc.player.posY, mc.player.posZ);
+        IBlockState blockState = mc.world.getBlockState(blockPos);
         return BlockUtil.isBlockValid(blockState, blockPos);
     }
 
@@ -74,13 +74,13 @@ public class BlockUtil
         if (blockState.getBlock() != Blocks.AIR) {
             return false;
         }
-        if (BlockUtil.mc.player.getDistanceSq(blockPos) < 1.0) {
+        if (mc.player.getDistanceSq(blockPos) < 1.0) {
             return false;
         }
-        if (BlockUtil.mc.world.getBlockState(blockPos.up()).getBlock() != Blocks.AIR) {
+        if (mc.world.getBlockState(blockPos.up()).getBlock() != Blocks.AIR) {
             return false;
         }
-        if (BlockUtil.mc.world.getBlockState(blockPos.up(2)).getBlock() != Blocks.AIR) {
+        if (mc.world.getBlockState(blockPos.up(2)).getBlock() != Blocks.AIR) {
             return false;
         }
         return BlockUtil.isBedrockHole(blockPos) || BlockUtil.isObbyHole(blockPos) || BlockUtil.isBothHole(blockPos) || BlockUtil.isElseHole(blockPos);
@@ -88,7 +88,7 @@ public class BlockUtil
 
     public static boolean isObbyHole(BlockPos blockPos) {
         for (BlockPos pos : BlockUtil.getTouchingBlocks(blockPos)) {
-            IBlockState touchingState = BlockUtil.mc.world.getBlockState(pos);
+            IBlockState touchingState = mc.world.getBlockState(pos);
             if (touchingState.getBlock() != Blocks.AIR && touchingState.getBlock() == Blocks.OBSIDIAN) continue;
             return false;
         }
@@ -97,7 +97,7 @@ public class BlockUtil
 
     public static boolean isBedrockHole(BlockPos blockPos) {
         for (BlockPos pos : BlockUtil.getTouchingBlocks(blockPos)) {
-            IBlockState touchingState = BlockUtil.mc.world.getBlockState(pos);
+            IBlockState touchingState = mc.world.getBlockState(pos);
             if (touchingState.getBlock() != Blocks.AIR && touchingState.getBlock() == Blocks.BEDROCK) continue;
             return false;
         }
@@ -106,7 +106,7 @@ public class BlockUtil
 
     public static boolean isBothHole(BlockPos blockPos) {
         for (BlockPos pos : BlockUtil.getTouchingBlocks(blockPos)) {
-            IBlockState touchingState = BlockUtil.mc.world.getBlockState(pos);
+            IBlockState touchingState = mc.world.getBlockState(pos);
             if (touchingState.getBlock() != Blocks.AIR && (touchingState.getBlock() == Blocks.BEDROCK || touchingState.getBlock() == Blocks.OBSIDIAN)) continue;
             return false;
         }
@@ -115,7 +115,7 @@ public class BlockUtil
 
     public static boolean isElseHole(BlockPos blockPos) {
         for (BlockPos pos : BlockUtil.getTouchingBlocks(blockPos)) {
-            IBlockState touchingState = BlockUtil.mc.world.getBlockState(pos);
+            IBlockState touchingState = mc.world.getBlockState(pos);
             if (touchingState.getBlock() != Blocks.AIR && touchingState.isFullBlock()) continue;
             return false;
         }
@@ -182,7 +182,7 @@ public class BlockUtil
         for (EnumFacing side : EnumFacing.values()) {
             IBlockState blockState;
             BlockPos neighbour = pos.offset(side);
-            if (!BlockUtil.mc.world.getBlockState(neighbour).getBlock().canCollideCheck(BlockUtil.mc.world.getBlockState(neighbour), false) || (blockState = BlockUtil.mc.world.getBlockState(neighbour)).getMaterial().isReplaceable())
+            if (!mc.world.getBlockState(neighbour).getBlock().canCollideCheck(mc.world.getBlockState(neighbour), false) || (blockState = mc.world.getBlockState(neighbour)).getMaterial().isReplaceable())
                 continue;
             facings.add(side);
         }
@@ -199,7 +199,7 @@ public class BlockUtil
     }
 
     public static EnumFacing getRayTraceFacing(BlockPos pos) {
-        RayTraceResult result = BlockUtil.mc.world.rayTraceBlocks(new Vec3d(BlockUtil.mc.player.posX, BlockUtil.mc.player.posY + (double) BlockUtil.mc.player.getEyeHeight(), BlockUtil.mc.player.posZ), new Vec3d((double) pos.getX() + 0.5, (double) pos.getX() - 0.5, (double) pos.getX() + 0.5));
+        RayTraceResult result = mc.world.rayTraceBlocks(new Vec3d(mc.player.posX, mc.player.posY + (double) mc.player.getEyeHeight(), mc.player.posZ), new Vec3d((double) pos.getX() + 0.5, (double) pos.getX() - 0.5, (double) pos.getX() + 0.5));
         if (result == null || result.sideHit == null) {
             return EnumFacing.UP;
         }
@@ -211,7 +211,7 @@ public class BlockUtil
     }
 
     public static int isPositionPlaceable(BlockPos pos, boolean rayTrace, boolean entityCheck) {
-        Block block = BlockUtil.mc.world.getBlockState(pos).getBlock();
+        Block block = mc.world.getBlockState(pos).getBlock();
         if (!(block instanceof BlockAir || block instanceof BlockLiquid || block instanceof BlockTallGrass || block instanceof BlockFire || block instanceof BlockDeadBush || block instanceof BlockSnow)) {
             return 0;
         }
@@ -219,7 +219,7 @@ public class BlockUtil
             return -1;
         }
         if (entityCheck) {
-            for (Entity entity : BlockUtil.mc.world.getEntitiesWithinAABB(Entity.class, new AxisAlignedBB(pos))) {
+            for (Entity entity : mc.world.getEntitiesWithinAABB(Entity.class, new AxisAlignedBB(pos))) {
                 if (entity instanceof EntityItem || entity instanceof EntityXPOrb) continue;
                 return 1;
             }
@@ -236,11 +236,11 @@ public class BlockUtil
             float f = (float) (vec.x - (double) pos.getX());
             float f1 = (float) (vec.y - (double) pos.getY());
             float f2 = (float) (vec.z - (double) pos.getZ());
-            BlockUtil.mc.player.connection.sendPacket(new CPacketPlayerTryUseItemOnBlock(pos, direction, hand, f, f1, f2));
+            mc.player.connection.sendPacket(new CPacketPlayerTryUseItemOnBlock(pos, direction, hand, f, f1, f2));
         } else {
-            BlockUtil.mc.playerController.processRightClickBlock(BlockUtil.mc.player, BlockUtil.mc.world, pos, direction, vec, hand);
+            mc.playerController.processRightClickBlock(mc.player, mc.world, pos, direction, vec, hand);
         }
-        BlockUtil.mc.player.swingArm(EnumHand.MAIN_HAND);
+        mc.player.swingArm(EnumHand.MAIN_HAND);
     }
 
     public static void rightClickBlockLegit(BlockPos pos, float range, boolean rotate, EnumHand hand, AtomicDouble Yaw, AtomicDouble Pitch, AtomicBoolean rotating) {
@@ -250,7 +250,7 @@ public class BlockUtil
         for (EnumFacing side : EnumFacing.values()) {
             Vec3d hitVec = posVec.add(new Vec3d(side.getDirectionVec()).scale(0.5));
             double distanceSqHitVec = eyesPos.squareDistanceTo(hitVec);
-            if (!(distanceSqHitVec <= MathUtil.square(range)) || !(distanceSqHitVec < distanceSqPosVec) || BlockUtil.mc.world.rayTraceBlocks(eyesPos, hitVec, false, true, false) != null)
+            if (!(distanceSqHitVec <= MathUtil.square(range)) || !(distanceSqHitVec < distanceSqPosVec) || mc.world.rayTraceBlocks(eyesPos, hitVec, false, true, false) != null)
                 continue;
             if (rotate) {
                 float[] rotations = RotationUtil.getLegitRotations(hitVec);
@@ -258,8 +258,8 @@ public class BlockUtil
                 Pitch.set(rotations[1]);
                 rotating.set(true);
             }
-            BlockUtil.mc.playerController.processRightClickBlock(BlockUtil.mc.player, BlockUtil.mc.world, pos, side, hitVec, hand);
-            BlockUtil.mc.player.swingArm(hand);
+            mc.playerController.processRightClickBlock(mc.player, mc.world, pos, side, hitVec, hand);
+            mc.player.swingArm(hand);
             break;
         }
     }
@@ -273,17 +273,17 @@ public class BlockUtil
         BlockPos neighbour = pos.offset(side);
         EnumFacing opposite = side.getOpposite();
         Vec3d hitVec = new Vec3d(neighbour).add(0.5, 0.5, 0.5).add(new Vec3d(opposite.getDirectionVec()).scale(0.5));
-        Block neighbourBlock = BlockUtil.mc.world.getBlockState(neighbour).getBlock();
-        if (!BlockUtil.mc.player.isSneaking() && (blackList.contains(neighbourBlock) || shulkerList.contains(neighbourBlock))) {
-            BlockUtil.mc.player.connection.sendPacket(new CPacketEntityAction(BlockUtil.mc.player, CPacketEntityAction.Action.START_SNEAKING));
-            BlockUtil.mc.player.setSneaking(true);
+        Block neighbourBlock = mc.world.getBlockState(neighbour).getBlock();
+        if (!mc.player.isSneaking() && (blackList.contains(neighbourBlock) || shulkerList.contains(neighbourBlock))) {
+            mc.player.connection.sendPacket(new CPacketEntityAction(mc.player, CPacketEntityAction.Action.START_SNEAKING));
+            mc.player.setSneaking(true);
             sneaking = true;
         }
         if (rotate) {
             RotationUtil.faceVector(hitVec, true);
         }
         BlockUtil.rightClickBlock(neighbour, hitVec, hand, opposite, packet);
-        BlockUtil.mc.player.swingArm(EnumHand.MAIN_HAND);
+        mc.player.swingArm(EnumHand.MAIN_HAND);
         return sneaking || isSneaking;
     }
 
@@ -297,23 +297,23 @@ public class BlockUtil
         BlockPos neighbour = pos.offset(side);
         EnumFacing opposite = side.getOpposite();
         Vec3d hitVec = new Vec3d(neighbour).add(0.5, 0.5, 0.5).add(new Vec3d(opposite.getDirectionVec()).scale(0.5));
-        Block neighbourBlock = BlockUtil.mc.world.getBlockState(neighbour).getBlock();
-        if (!BlockUtil.mc.player.isSneaking() && (blackList.contains(neighbourBlock) || shulkerList.contains(neighbourBlock))) {
-            BlockUtil.mc.player.connection.sendPacket(new CPacketEntityAction(BlockUtil.mc.player, CPacketEntityAction.Action.START_SNEAKING));
+        Block neighbourBlock = mc.world.getBlockState(neighbour).getBlock();
+        if (!mc.player.isSneaking() && (blackList.contains(neighbourBlock) || shulkerList.contains(neighbourBlock))) {
+            mc.player.connection.sendPacket(new CPacketEntityAction(mc.player, CPacketEntityAction.Action.START_SNEAKING));
             sneaking = true;
         }
         if (rotate) {
             RerHack.rotationManager.lookAtVec3d(hitVec);
         }
         BlockUtil.rightClickBlock(neighbour, hitVec, hand, opposite, packet);
-        BlockUtil.mc.player.swingArm(EnumHand.MAIN_HAND);
+        mc.player.swingArm(EnumHand.MAIN_HAND);
         return sneaking || isSneaking;
     }
 
     public static void placeBlockStopSneaking(BlockPos pos, EnumHand hand, boolean rotate, boolean packet, boolean isSneaking) {
         boolean sneaking = BlockUtil.placeBlockSmartRotate(pos, hand, rotate, packet, isSneaking);
         if (!isSneaking && sneaking) {
-            BlockUtil.mc.player.connection.sendPacket(new CPacketEntityAction(BlockUtil.mc.player, CPacketEntityAction.Action.STOP_SNEAKING));
+            mc.player.connection.sendPacket(new CPacketEntityAction(mc.player, CPacketEntityAction.Action.STOP_SNEAKING));
         }
     }
 
@@ -323,7 +323,7 @@ public class BlockUtil
 
     public static List<BlockPos> possiblePlacePositions(float placeRange) {
         NonNullList positions = NonNullList.create();
-        positions.addAll(BlockUtil.getSphere(EntityUtil.getPlayerPos(BlockUtil.mc.player), placeRange, (int) placeRange, false, true, 0).stream().filter(BlockUtil::canPlaceCrystal).collect(Collectors.toList()));
+        positions.addAll(BlockUtil.getSphere(EntityUtil.getPlayerPos(mc.player), placeRange, (int) placeRange, false, true, 0).stream().filter(BlockUtil::canPlaceCrystal).collect(Collectors.toList()));
         return positions;
     }
 
@@ -359,7 +359,7 @@ public class BlockUtil
         BlockPos boost = blockPos.add(0, 1, 0);
         BlockPos boost2 = blockPos.add(0, 2, 0);
         try {
-            return (BlockUtil.mc.world.getBlockState(blockPos).getBlock() == Blocks.BEDROCK || BlockUtil.mc.world.getBlockState(blockPos).getBlock() == Blocks.OBSIDIAN) && BlockUtil.mc.world.getBlockState(boost).getBlock() == Blocks.AIR && BlockUtil.mc.world.getBlockState(boost2).getBlock() == Blocks.AIR && BlockUtil.mc.world.getEntitiesWithinAABB(Entity.class, new AxisAlignedBB(boost)).isEmpty() && BlockUtil.mc.world.getEntitiesWithinAABB(Entity.class, new AxisAlignedBB(boost2)).isEmpty();
+            return (mc.world.getBlockState(blockPos).getBlock() == Blocks.BEDROCK || mc.world.getBlockState(blockPos).getBlock() == Blocks.OBSIDIAN) && mc.world.getBlockState(boost).getBlock() == Blocks.AIR && mc.world.getBlockState(boost2).getBlock() == Blocks.AIR && mc.world.getEntitiesWithinAABB(Entity.class, new AxisAlignedBB(boost)).isEmpty() && mc.world.getEntitiesWithinAABB(Entity.class, new AxisAlignedBB(boost2)).isEmpty();
         } catch (Exception e) {
             return false;
         }
@@ -367,7 +367,7 @@ public class BlockUtil
 
     public static List<BlockPos> possiblePlacePositions(float placeRange, boolean specialEntityCheck, boolean oneDot15) {
         NonNullList positions = NonNullList.create();
-        positions.addAll(BlockUtil.getSphere(EntityUtil.getPlayerPos(BlockUtil.mc.player), placeRange, (int) placeRange, false, true, 0).stream().filter(pos -> BlockUtil.canPlaceCrystal(pos, specialEntityCheck, oneDot15)).collect(Collectors.toList()));
+        positions.addAll(BlockUtil.getSphere(EntityUtil.getPlayerPos(mc.player), placeRange, (int) placeRange, false, true, 0).stream().filter(pos -> BlockUtil.canPlaceCrystal(pos, specialEntityCheck, oneDot15)).collect(Collectors.toList()));
         return positions;
     }
 
@@ -375,18 +375,18 @@ public class BlockUtil
         BlockPos boost = blockPos.add(0, 1, 0);
         BlockPos boost2 = blockPos.add(0, 2, 0);
         try {
-            if (BlockUtil.mc.world.getBlockState(blockPos).getBlock() != Blocks.BEDROCK && BlockUtil.mc.world.getBlockState(blockPos).getBlock() != Blocks.OBSIDIAN) {
+            if (mc.world.getBlockState(blockPos).getBlock() != Blocks.BEDROCK && mc.world.getBlockState(blockPos).getBlock() != Blocks.OBSIDIAN) {
                 return false;
             }
-            if (!oneDot15 && BlockUtil.mc.world.getBlockState(boost2).getBlock() != Blocks.AIR || BlockUtil.mc.world.getBlockState(boost).getBlock() != Blocks.AIR) {
+            if (!oneDot15 && mc.world.getBlockState(boost2).getBlock() != Blocks.AIR || mc.world.getBlockState(boost).getBlock() != Blocks.AIR) {
                 return false;
             }
-            for (Entity entity : BlockUtil.mc.world.getEntitiesWithinAABB(Entity.class, new AxisAlignedBB(boost))) {
+            for (Entity entity : mc.world.getEntitiesWithinAABB(Entity.class, new AxisAlignedBB(boost))) {
                 if (entity.isDead || specialEntityCheck && entity instanceof EntityEnderCrystal) continue;
                 return false;
             }
             if (!oneDot15) {
-                for (Entity entity : BlockUtil.mc.world.getEntitiesWithinAABB(Entity.class, new AxisAlignedBB(boost2))) {
+                for (Entity entity : mc.world.getEntitiesWithinAABB(Entity.class, new AxisAlignedBB(boost2))) {
                     if (entity.isDead || specialEntityCheck && entity instanceof EntityEnderCrystal) continue;
                     return false;
                 }
@@ -406,7 +406,7 @@ public class BlockUtil
     }
 
     private static IBlockState getState(BlockPos pos) {
-        return BlockUtil.mc.world.getBlockState(pos);
+        return mc.world.getBlockState(pos);
     }
 
     public static boolean isBlockAboveEntitySolid(Entity entity) {
@@ -422,11 +422,11 @@ public class BlockUtil
     }
 
     public static void placeCrystalOnBlock(final BlockPos pos, final EnumHand hand, final boolean swing, final boolean exactHand) {
-        RayTraceResult result = BlockUtil.mc.world.rayTraceBlocks(new Vec3d(BlockUtil.mc.player.posX, BlockUtil.mc.player.posY + BlockUtil.mc.player.getEyeHeight(), BlockUtil.mc.player.posZ), new Vec3d(pos.getX() + 0.5, pos.getY() - 0.5, pos.getZ() + 0.5));
+        RayTraceResult result = mc.world.rayTraceBlocks(new Vec3d(mc.player.posX, mc.player.posY + mc.player.getEyeHeight(), mc.player.posZ), new Vec3d(pos.getX() + 0.5, pos.getY() - 0.5, pos.getZ() + 0.5));
         EnumFacing facing = (result == null || result.sideHit == null) ? EnumFacing.UP : result.sideHit;
-        BlockUtil.mc.player.connection.sendPacket((Packet)new CPacketPlayerTryUseItemOnBlock(pos, facing, hand, 0.0f, 0.0f, 0.0f));
+        mc.player.connection.sendPacket((Packet)new CPacketPlayerTryUseItemOnBlock(pos, facing, hand, 0.0f, 0.0f, 0.0f));
         if (swing) {
-            BlockUtil.mc.player.connection.sendPacket((Packet)new CPacketAnimation(exactHand ? hand : EnumHand.MAIN_HAND));
+            mc.player.connection.sendPacket((Packet)new CPacketAnimation(exactHand ? hand : EnumHand.MAIN_HAND));
         }
     }
 
@@ -449,16 +449,16 @@ public class BlockUtil
 
     public static Boolean isPosInFov(BlockPos pos) {
         int dirnumber = RotationUtil.getDirection4D();
-        if (dirnumber == 0 && (double) pos.getZ() - BlockUtil.mc.player.getPositionVector().z < 0.0) {
+        if (dirnumber == 0 && (double) pos.getZ() - mc.player.getPositionVector().z < 0.0) {
             return false;
         }
-        if (dirnumber == 1 && (double) pos.getX() - BlockUtil.mc.player.getPositionVector().x > 0.0) {
+        if (dirnumber == 1 && (double) pos.getX() - mc.player.getPositionVector().x > 0.0) {
             return false;
         }
-        if (dirnumber == 2 && (double) pos.getZ() - BlockUtil.mc.player.getPositionVector().z > 0.0) {
+        if (dirnumber == 2 && (double) pos.getZ() - mc.player.getPositionVector().z > 0.0) {
             return false;
         }
-        return dirnumber != 3 || (double) pos.getX() - BlockUtil.mc.player.getPositionVector().x >= 0.0;
+        return dirnumber != 3 || (double) pos.getX() - mc.player.getPositionVector().x >= 0.0;
     }
 
     public static boolean isBlockBelowEntitySolid(Entity entity) {
@@ -474,7 +474,7 @@ public class BlockUtil
     }
 
     public static boolean isBlockUnSolid(BlockPos pos) {
-        return BlockUtil.isBlockUnSolid(BlockUtil.mc.world.getBlockState(pos).getBlock());
+        return isBlockUnSolid(mc.world.getBlockState(pos).getBlock());
     }
 
     public static boolean isBlockUnSolid(Block block) {
@@ -498,22 +498,22 @@ public class BlockUtil
     }
 
     public static boolean canBreak(BlockPos pos) {
-        IBlockState blockState = BlockUtil.mc.world.getBlockState(pos);
+        IBlockState blockState = mc.world.getBlockState(pos);
         Block block = blockState.getBlock();
-        return block.getBlockHardness(blockState, BlockUtil.mc.world, pos) != -1.0f;
+        return block.getBlockHardness(blockState, mc.world, pos) != -1.0f;
     }
 
     public static boolean isValidBlock(BlockPos pos) {
-        Block block = BlockUtil.mc.world.getBlockState(pos).getBlock();
+        Block block = mc.world.getBlockState(pos).getBlock();
         return !(block instanceof BlockLiquid) && block.getMaterial(null) != Material.AIR;
     }
 
     public static boolean isScaffoldPos(BlockPos pos) {
-        return BlockUtil.mc.world.isAirBlock(pos) || BlockUtil.mc.world.getBlockState(pos).getBlock() == Blocks.SNOW_LAYER || BlockUtil.mc.world.getBlockState(pos).getBlock() == Blocks.TALLGRASS || BlockUtil.mc.world.getBlockState(pos).getBlock() instanceof BlockLiquid;
+        return mc.world.isAirBlock(pos) || mc.world.getBlockState(pos).getBlock() == Blocks.SNOW_LAYER || mc.world.getBlockState(pos).getBlock() == Blocks.TALLGRASS || mc.world.getBlockState(pos).getBlock() instanceof BlockLiquid;
     }
 
     public static boolean rayTracePlaceCheck(BlockPos pos, boolean shouldCheck, float height) {
-        return !shouldCheck || BlockUtil.mc.world.rayTraceBlocks(new Vec3d(BlockUtil.mc.player.posX, BlockUtil.mc.player.posY + (double) BlockUtil.mc.player.getEyeHeight(), BlockUtil.mc.player.posZ), new Vec3d(pos.getX(), (float) pos.getY() + height, pos.getZ()), false, true, false) == null;
+        return !shouldCheck || mc.world.rayTraceBlocks(new Vec3d(mc.player.posX, mc.player.posY + (double) mc.player.getEyeHeight(), mc.player.posZ), new Vec3d(pos.getX(), (float) pos.getY() + height, pos.getZ()), false, true, false) == null;
     }
 
     public static boolean rayTracePlaceCheck(BlockPos pos, boolean shouldCheck) {
@@ -540,7 +540,7 @@ public class BlockUtil
 
     public static List<BlockPos> getSphereRealth(final float radius, final boolean ignoreAir) {
         final List<BlockPos> sphere = new ArrayList<BlockPos>();
-        final BlockPos pos = new BlockPos(BlockUtil.mc.player.getPositionVector());
+        final BlockPos pos = new BlockPos(mc.player.getPositionVector());
         final int posX = pos.getX();
         final int posY = pos.getY();
         final int posZ = pos.getZ();
@@ -550,7 +550,7 @@ public class BlockUtil
                 for (int y = posY - radiuss; y < posY + radius; ++y) {
                     if ((posX - x) * (posX - x) + (posZ - z) * (posZ - z) + (posY - y) * (posY - y) < radius * radius) {
                         final BlockPos position = new BlockPos(x, y, z);
-                        if (!ignoreAir || BlockUtil.mc.world.getBlockState(position).getBlock() != Blocks.AIR) {
+                        if (!ignoreAir || mc.world.getBlockState(position).getBlock() != Blocks.AIR) {
                             sphere.add(position);
                         }
                     }

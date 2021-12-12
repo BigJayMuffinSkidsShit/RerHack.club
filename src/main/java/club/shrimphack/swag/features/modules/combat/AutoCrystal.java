@@ -1,12 +1,12 @@
 package club.shrimphack.swag.features.modules.combat;
 
+import club.shrimphack.swag.features.modules.client.ClickGui;
+import club.shrimphack.swag.features.setting.Setting;
 import club.shrimphack.swag.mixin.mixins.accessors.AccessorCPacketUseEntity;
 import club.shrimphack.swag.RerHack;
 import club.shrimphack.swag.event.events.PacketEvent;
 import club.shrimphack.swag.event.events.Render3DEvent;
 import club.shrimphack.swag.features.modules.Module;
-import club.shrimphack.swag.features.modules.client.ClickGui;
-import club.shrimphack.swag.features.setting.Setting;
 import club.shrimphack.swag.util.Timer;
 import club.shrimphack.swag.util.*;
 import net.minecraft.entity.Entity;

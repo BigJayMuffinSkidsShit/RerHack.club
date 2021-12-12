@@ -1,8 +1,8 @@
 package club.shrimphack.swag.manager;
 
-import club.shrimphack.swag.util.Timer;
 import club.shrimphack.swag.features.Feature;
 import club.shrimphack.swag.features.modules.client.HUD;
+import club.shrimphack.swag.util.Timer;
 
 import java.text.DecimalFormat;
 import java.util.Arrays;

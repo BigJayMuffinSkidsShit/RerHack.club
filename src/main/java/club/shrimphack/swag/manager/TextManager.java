@@ -1,10 +1,10 @@
 package club.shrimphack.swag.manager;
 
-import club.shrimphack.swag.util.Timer;
-import club.shrimphack.swag.RerHack;
 import club.shrimphack.swag.features.Feature;
 import club.shrimphack.swag.features.gui.font.CustomFont;
 import club.shrimphack.swag.features.modules.client.FontMod;
+import club.shrimphack.swag.util.Timer;
+import club.shrimphack.swag.RerHack;
 import net.minecraft.util.math.MathHelper;
 
 import java.awt.*;

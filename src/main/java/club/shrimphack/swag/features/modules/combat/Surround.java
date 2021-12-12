@@ -1,9 +1,10 @@
 package club.shrimphack.swag.features.modules.combat;
 
+import club.shrimphack.swag.features.setting.Setting;
+import club.shrimphack.swag.util.Timer;
 import club.shrimphack.swag.RerHack;
 import club.shrimphack.swag.features.command.Command;
 import club.shrimphack.swag.features.modules.Module;
-import club.shrimphack.swag.features.setting.Setting;
 import club.shrimphack.swag.util.BlockUtil;
 import club.shrimphack.swag.util.EntityUtil;
 import club.shrimphack.swag.util.InventoryUtil;
@@ -32,8 +33,8 @@ public class Surround extends Module
     private final Setting<Boolean> helpingBlocks = this.register( new Setting<Boolean>("HelpingBlocks", true));
     private final Setting<Boolean> antiPedo = this.register( new Setting<Boolean>("Always Help", false));
     private final Setting<Boolean> floor = this.register( new Setting<Boolean>("Floor", false));
-    private final club.shrimphack.swag.util.Timer  timer = new club.shrimphack.swag.util.Timer ();
-    private final club.shrimphack.swag.util.Timer retryTimer = new club.shrimphack.swag.util.Timer ();
+    private final Timer timer = new Timer();
+    private final Timer retryTimer = new Timer();
     private final Set<Vec3d> extendingBlocks = new HashSet<Vec3d>();
     private final Map<BlockPos, Integer> retries = new HashMap<BlockPos, Integer>();
     private int isSafe;

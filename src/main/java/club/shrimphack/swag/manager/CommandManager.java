@@ -1,9 +1,9 @@
 package club.shrimphack.swag.manager;
 
-import club.shrimphack.swag.features.command.commands.*;
-import com.mojang.realmsclient.gui.ChatFormatting;
 import club.shrimphack.swag.features.Feature;
 import club.shrimphack.swag.features.command.Command;
+import club.shrimphack.swag.features.command.commands.*;
+import com.mojang.realmsclient.gui.ChatFormatting;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

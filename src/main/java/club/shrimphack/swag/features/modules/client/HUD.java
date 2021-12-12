@@ -1,12 +1,12 @@
 package club.shrimphack.swag.features.modules.client;
 
+import club.shrimphack.swag.features.setting.Setting;
 import club.shrimphack.swag.event.events.ClientEvent;
 import club.shrimphack.swag.event.events.Render2DEvent;
 import club.shrimphack.swag.features.Feature;
 import club.shrimphack.swag.features.modules.Module;
-import club.shrimphack.swag.features.setting.Setting;
-import club.shrimphack.swag.util.*;
 import club.shrimphack.swag.util.Timer;
+import club.shrimphack.swag.util.*;
 import com.mojang.realmsclient.gui.ChatFormatting;
 import club.shrimphack.swag.RerHack;
 import net.minecraft.client.Minecraft;
@@ -40,7 +40,7 @@ public class HUD extends Module {
     private final Setting<Boolean> tps = register(new Setting("TPS", Boolean.valueOf(false), "Ticks per second of the server."));
     private final Setting<Boolean> fps = register(new Setting("FPS", Boolean.valueOf(false), "Your frames per second."));
     private final Setting<Boolean> lag = register(new Setting("LagNotifier", Boolean.valueOf(false), "The time"));
-    private final club.shrimphack.swag.util.Timer timer = new Timer();
+    private final Timer timer = new Timer();
     private final Map<String, Integer> players = new HashMap<>();
     public Setting<String> command = register(new Setting("Command", "OyVey"));
     public Setting<TextUtil.Color> bracketColor = register(new Setting("BracketColor", TextUtil.Color.BLUE));

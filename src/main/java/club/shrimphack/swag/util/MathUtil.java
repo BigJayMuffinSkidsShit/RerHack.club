@@ -149,9 +149,9 @@ public class MathUtil
     }
 
     public static double[] directionSpeed(double speed) {
-        float forward = MathUtil.mc.player.movementInput.moveForward;
-        float side = MathUtil.mc.player.movementInput.moveStrafe;
-        float yaw = MathUtil.mc.player.prevRotationYaw + (MathUtil.mc.player.rotationYaw - MathUtil.mc.player.prevRotationYaw) * mc.getRenderPartialTicks();
+        float forward = mc.player.movementInput.moveForward;
+        float side = mc.player.movementInput.moveStrafe;
+        float yaw = mc.player.prevRotationYaw + (mc.player.rotationYaw - mc.player.prevRotationYaw) * mc.getRenderPartialTicks();
         if (forward != 0.0f) {
             if (side > 0.0f) {
                 yaw += (float) (forward > 0.0f ? -45 : 45);

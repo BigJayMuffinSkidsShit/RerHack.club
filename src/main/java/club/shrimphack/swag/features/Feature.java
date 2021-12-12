@@ -1,11 +1,11 @@
 package club.shrimphack.swag.features;
 
-import club.shrimphack.swag.manager.TextManager;
-import club.shrimphack.swag.util.Util;
-import club.shrimphack.swag.RerHack;
 import club.shrimphack.swag.features.gui.OyVeyGui;
 import club.shrimphack.swag.features.modules.Module;
 import club.shrimphack.swag.features.setting.Setting;
+import club.shrimphack.swag.manager.TextManager;
+import club.shrimphack.swag.util.Util;
+import club.shrimphack.swag.RerHack;
 
 import java.util.ArrayList;
 import java.util.List;

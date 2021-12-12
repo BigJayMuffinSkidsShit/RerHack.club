@@ -1,8 +1,8 @@
 package club.shrimphack.swag.manager;
 
-import club.shrimphack.swag.RerHack;
 import club.shrimphack.swag.features.Feature;
 import club.shrimphack.swag.features.modules.Module;
+import club.shrimphack.swag.RerHack;
 
 import java.io.File;
 import java.io.IOException;

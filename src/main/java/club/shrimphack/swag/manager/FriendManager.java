@@ -1,8 +1,8 @@
 package club.shrimphack.swag.manager;
 
-import club.shrimphack.swag.util.PlayerUtil;
 import club.shrimphack.swag.features.Feature;
 import club.shrimphack.swag.features.setting.Setting;
+import club.shrimphack.swag.util.PlayerUtil;
 import net.minecraft.entity.player.EntityPlayer;
 
 import java.util.ArrayList;

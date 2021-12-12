@@ -1,8 +1,8 @@
 package club.shrimphack.swag.features.modules.player;
 
+import club.shrimphack.swag.features.setting.Setting;
 import club.shrimphack.swag.features.command.Command;
 import club.shrimphack.swag.features.modules.Module;
-import club.shrimphack.swag.features.setting.Setting;
 import com.mojang.authlib.GameProfile;
 import net.minecraft.client.entity.EntityOtherPlayerMP;
 import net.minecraft.world.GameType;

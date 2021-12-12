@@ -1,8 +1,8 @@
 package club.shrimphack.swag.features.modules.client;
 
+import club.shrimphack.swag.features.setting.Setting;
 import club.shrimphack.swag.RerHack;
 import club.shrimphack.swag.features.modules.Module;
-import club.shrimphack.swag.features.setting.Setting;
 import club.shrimphack.swag.util.ColorUtil;
 
 import java.awt.*;

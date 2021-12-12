@@ -3,8 +3,6 @@ package club.shrimphack.swag;
 import club.minnced.discord.rpc.DiscordEventHandlers;
 import club.minnced.discord.rpc.DiscordRPC;
 import club.minnced.discord.rpc.DiscordRichPresence;
-import club.shrimphack.swag.features.modules.misc.RPC;
-import com.sun.jna.platform.FileMonitor;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiMainMenu;
 
@@ -13,7 +11,7 @@ public class DiscordPresence {
     public static DiscordRichPresence presence;
     private static Thread thread;
     private static int index;
-    private static RPC RPC;
+    private static club.shrimphack.swag.features.modules.misc.RPC RPC;
 
     static {
         index = 1;

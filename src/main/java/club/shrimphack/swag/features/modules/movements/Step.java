@@ -1,7 +1,7 @@
 package club.shrimphack.swag.features.modules.movements;
 
-import club.shrimphack.swag.features.modules.Module;
 import club.shrimphack.swag.features.setting.Setting;
+import club.shrimphack.swag.features.modules.Module;
 
 public class Step extends Module {
     public Step() {

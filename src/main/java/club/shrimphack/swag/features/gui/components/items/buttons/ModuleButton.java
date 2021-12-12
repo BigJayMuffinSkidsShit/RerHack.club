@@ -1,12 +1,12 @@
 package club.shrimphack.swag.features.gui.components.items.buttons;
 
-import club.shrimphack.swag.features.gui.OyVeyGui;
-import club.shrimphack.swag.features.gui.components.Component;
-import club.shrimphack.swag.features.gui.components.items.Item;
 import club.shrimphack.swag.features.modules.Module;
 import club.shrimphack.swag.features.modules.client.HUD;
 import club.shrimphack.swag.features.setting.Bind;
 import club.shrimphack.swag.features.setting.Setting;
+import club.shrimphack.swag.features.gui.OyVeyGui;
+import club.shrimphack.swag.features.gui.components.Component;
+import club.shrimphack.swag.features.gui.components.items.Item;
 import club.shrimphack.swag.util.ColorUtil;
 import club.shrimphack.swag.util.RenderUtil;
 import club.shrimphack.swag.util.Util;

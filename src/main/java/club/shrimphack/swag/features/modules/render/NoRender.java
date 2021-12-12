@@ -6,12 +6,12 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class NoRender extends Module {
     public NoRender() {
-        super("NoRender", "Shows safe spots.", Module.Category.RENDER, false, false, false);
+        super("NoRender", "Shows safe spots.", Module.Category.RENDER, true, false, false);
     }
 
+
     @SubscribeEvent
-    public void OnPacketRecive(PacketEvent.Receive event)
-    {
-        System.out.println("asd");
+    public void onPacketReceive(final PacketEvent.Receive event) {
+        System.out.println("asasas");
     }
 }

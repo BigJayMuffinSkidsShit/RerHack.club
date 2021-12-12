@@ -1,13 +1,13 @@
 package club.shrimphack.swag.manager;
 
-import club.shrimphack.swag.util.Util;
-import com.google.gson.*;
-import club.shrimphack.swag.RerHack;
 import club.shrimphack.swag.features.Feature;
 import club.shrimphack.swag.features.modules.Module;
 import club.shrimphack.swag.features.setting.Bind;
 import club.shrimphack.swag.features.setting.EnumConverter;
 import club.shrimphack.swag.features.setting.Setting;
+import club.shrimphack.swag.util.Util;
+import com.google.gson.*;
+import club.shrimphack.swag.RerHack;
 
 import java.io.*;
 import java.nio.file.Files;

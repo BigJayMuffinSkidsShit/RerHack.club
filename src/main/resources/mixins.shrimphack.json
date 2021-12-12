@@ -8,7 +8,6 @@
     "accessors.IServerAddress",
     "MixinNetworkManager",
     "accessors.AccessorCPacketUseEntity",
-    "IEntity",
-    "IEntityLivingBase"
+    "IEntity"
     ]
     }

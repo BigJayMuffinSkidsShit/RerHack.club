@@ -1,8 +1,8 @@
 package club.shrimphack.swag.features.command.commands;
 
-import club.shrimphack.swag.features.command.Command;
 import club.shrimphack.swag.features.modules.Module;
 import club.shrimphack.swag.features.setting.Setting;
+import club.shrimphack.swag.features.command.Command;
 import club.shrimphack.swag.manager.ConfigManager;
 import com.google.gson.JsonParser;
 import com.mojang.realmsclient.gui.ChatFormatting;

@@ -1,8 +1,8 @@
 package club.shrimphack.swag.features.modules.misc;
 
-import club.shrimphack.swag.DiscordPresence;
 import club.shrimphack.swag.features.modules.Module;
 import club.shrimphack.swag.features.setting.Setting;
+import club.shrimphack.swag.DiscordPresence;
 
 public class RPC extends Module {
     public RPC() {
