@@ -41,6 +41,7 @@ public class AutoCrystal
         Place,
         Break,
         Render,
+        AdvancedRender,
         Misc;
     }
 
@@ -81,6 +82,19 @@ public class AutoCrystal
     private final Setting<Integer> green = this.register(new Setting("Green", 120, 0, 255, v -> this.setting.getValue() == Settings.Render && this.render.getValue()));
     private final Setting<Integer> blue = this.register(new Setting("Blue", 255, 0, 255, v -> this.setting.getValue() == Settings.Render && this.render.getValue()));
     private final Setting<Integer> alpha = this.register(new Setting("Alpha", 120, 0,255, v -> this.setting.getValue() == Settings.Render && this.render.getValue()));
+
+    public Setting<Boolean> SgradientPlaceBlock = this.register(new Setting("2GradientPlaceBlock", true, v -> this.setting.getValue() == Settings.AdvancedRender));
+
+    private final Setting<Integer> redA1 = this.register(new Setting("StartRed", 80, 0, 255, v -> this.setting.getValue() == Settings.AdvancedRender));
+    private final Setting<Integer> greenA1 = this.register(new Setting("StartGreen", 120, 0, 255, v -> this.setting.getValue() == Settings.AdvancedRender));
+    private final Setting<Integer> blueA1 = this.register(new Setting("StartBlue", 255, 0, 255, v -> this.setting.getValue() == Settings.AdvancedRender));
+    private final Setting<Integer> alphaA1 = this.register(new Setting("StartAlpha", 120, 0,255, v -> this.setting.getValue() == Settings.AdvancedRender));
+
+    private final Setting<Integer> redA2 = this.register(new Setting("EndRed", 80, 0, 255, v -> this.setting.getValue() == Settings.AdvancedRender));
+    private final Setting<Integer> greenA2 = this.register(new Setting("EndGreen", 120, 0, 255, v -> this.setting.getValue() == Settings.AdvancedRender));
+    private final Setting<Integer> blueA2 = this.register(new Setting("EndBlue", 255, 0, 255, v -> this.setting.getValue() == Settings.AdvancedRender));
+    private final Setting<Integer> alphaA2 = this.register(new Setting("EndAlpha", 120, 0,255, v -> this.setting.getValue() == Settings.AdvancedRender));
+
     public Setting<Boolean> colorSync = this.register(new Setting("ColorSync", false, v -> this.setting.getValue() == Settings.Render && this.render.getValue()));
     public Setting<Boolean> box = this.register(new Setting("Box", true, v -> this.setting.getValue() == Settings.Render && this.render.getValue()));
     private final Setting<Integer> boxAlpha = this.register(new Setting("BoxAlpha", 30, 0, 255, v -> this.setting.getValue() == Settings.Render && this.render.getValue() && this.box.getValue()));
@@ -326,9 +340,14 @@ public class AutoCrystal
     @Override
     public void onRender3D(final Render3DEvent event) {
         if (this.renderPos != null && this.render.getValue() && (this.box.getValue() || this.text.getValue() || this.outline.getValue())) {
-            RenderUtil.drawBoxESP(this.renderPos, ((boolean)this.colorSync.getValue()) ? ColorUtil.rainbow(ClickGui.getInstance().rainbowHue.getValue()) : new Color(this.red.getValue(), this.green.getValue(), this.blue.getValue(), this.alpha.getValue()), this.customOutline.getValue(), ((boolean)this.colorSync.getValue()) ? this.getCurrentColor() : new Color(this.cRed.getValue(), this.cGreen.getValue(), this.cBlue.getValue(), this.cAlpha.getValue()), this.lineWidth.getValue(), this.outline.getValue(), this.box.getValue(), this.boxAlpha.getValue(), false);
+            if(SgradientPlaceBlock.getValue())
+            {
+                RenderUtil.drawGradientFilledBox(this.renderPos, new Color(this.redA1.getValue(), this.greenA1.getValue(), this.blueA1.getValue(), this.alphaA1.getValue()), new Color(this.redA2.getValue(), this.greenA2.getValue(), this.blueA2.getValue(), this.alphaA2.getValue()));
+            }else {
+                RenderUtil.drawBoxESP(this.renderPos, ((boolean) this.colorSync.getValue()) ? ColorUtil.rainbow(ClickGui.getInstance().rainbowHue.getValue()) : new Color(this.red.getValue(), this.green.getValue(), this.blue.getValue(), this.alpha.getValue()), this.customOutline.getValue(), ((boolean) this.colorSync.getValue()) ? this.getCurrentColor() : new Color(this.cRed.getValue(), this.cGreen.getValue(), this.cBlue.getValue(), this.cAlpha.getValue()), this.lineWidth.getValue(), this.outline.getValue(), this.box.getValue(), this.boxAlpha.getValue(), false);
+            }
             if (this.text.getValue()) {
-                RenderUtil.drawText(this.renderPos, ((Math.floor(this.renderDamage) == this.renderDamage) ? Integer.valueOf((int)this.renderDamage) : String.format("%.1f", this.renderDamage)) + "");
+                RenderUtil.drawText(this.renderPos, ((Math.floor(this.renderDamage) == this.renderDamage) ? Integer.valueOf((int) this.renderDamage) : String.format("%.1f", this.renderDamage)) + "");
             }
         }
     }
