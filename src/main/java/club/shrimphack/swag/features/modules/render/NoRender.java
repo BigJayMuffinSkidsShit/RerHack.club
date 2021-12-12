@@ -3,10 +3,14 @@ package club.shrimphack.swag.features.modules.render;
 import club.shrimphack.swag.event.events.PacketEvent;
 import club.shrimphack.swag.features.modules.Module;
 import club.shrimphack.swag.features.setting.Setting;
+import club.shrimphack.swag.util.RenderUtil;
+import net.minecraft.client.Minecraft;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.*;
 import net.minecraftforge.client.event.RenderBlockOverlayEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+
+import java.awt.*;
 
 public class NoRender extends Module {
 
@@ -17,7 +21,9 @@ public class NoRender extends Module {
 
 
     public NoRender() {
+
         super("NoRender", "norender", Module.Category.RENDER, true, false, false);
+
     }
 
 
