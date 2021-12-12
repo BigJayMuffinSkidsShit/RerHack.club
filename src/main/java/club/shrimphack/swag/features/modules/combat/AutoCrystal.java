@@ -12,9 +12,13 @@ import club.shrimphack.swag.util.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityEnderCrystal;
+import net.minecraft.entity.monster.EntityHusk;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.inventory.EntityEquipmentSlot;
+import net.minecraft.item.ItemStack;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.client.CPacketPlayer;
 import net.minecraft.network.play.client.CPacketPlayerTryUseItemOnBlock;
@@ -22,6 +26,7 @@ import net.minecraft.network.play.client.CPacketUseEntity;
 import net.minecraft.network.play.server.*;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.EnumHandSide;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
@@ -94,6 +99,8 @@ public class AutoCrystal
     private final Setting<Integer> greenA2 = this.register(new Setting("EndGreen", 120, 0, 255, v -> this.setting.getValue() == Settings.AdvancedRender));
     private final Setting<Integer> blueA2 = this.register(new Setting("EndBlue", 255, 0, 255, v -> this.setting.getValue() == Settings.AdvancedRender));
     private final Setting<Integer> alphaA2 = this.register(new Setting("EndAlpha", 120, 0,255, v -> this.setting.getValue() == Settings.AdvancedRender));
+
+    public Setting<Boolean> PredictPlayerPos = this.register(new Setting("PredictPlayerPos", true, v -> this.setting.getValue() == Settings.Misc));
 
     public Setting<Boolean> colorSync = this.register(new Setting("ColorSync", false, v -> this.setting.getValue() == Settings.Render && this.render.getValue()));
     public Setting<Boolean> box = this.register(new Setting("Box", true, v -> this.setting.getValue() == Settings.Render && this.render.getValue()));
@@ -185,6 +192,8 @@ public class AutoCrystal
     }
 
     private void doBreak() {
+        EntityHusk pl = new EntityHusk(mc.world);
+        pl.setPosition(MovementUtil.extrapolatePlayerPositionWithGravity(mc.player, 40).x, MovementUtil.extrapolatePlayerPositionWithGravity(mc.player, 40).y, MovementUtil.extrapolatePlayerPositionWithGravity(mc.player, 40).z);
         Entity crystal = null;
         double maxDamage = 0.5;
         for (int size = this.mc.world.loadedEntityList.size(), i = 0; i < size; ++i) {
@@ -194,9 +203,23 @@ public class AutoCrystal
                 if (targetDamage > this.minDamage.getValue() || targetDamage * this.lethalMult.getValue() > this.currentTarget.getHealth() + this.currentTarget.getAbsorptionAmount() || ItemUtil.isArmorUnderPercent(this.currentTarget, this.armorScale.getValue())) {
                     final float selfDamage = EntityUtil.calculate(entity.posX, entity.posY, entity.posZ, (EntityLivingBase) this.mc.player);
                     if (selfDamage <= this.maxSelf.getValue() && selfDamage + 2.0f <= this.mc.player.getHealth() + this.mc.player.getAbsorptionAmount() && selfDamage < targetDamage) {
-                        if (maxDamage <= targetDamage) {
-                            maxDamage = targetDamage;
-                            crystal = entity;
+
+                        if(this.PredictPlayerPos.getValue()==true)
+                        {
+                            final float selfDamage2 = EntityUtil.calculate(entity.posX, entity.posY, entity.posZ, (EntityLivingBase) pl);
+
+                            if(selfDamage2 <= this.maxSelf.getValue() && selfDamage2 + 2.0f <= this.mc.player.getHealth() + this.mc.player.getAbsorptionAmount() && 2 < targetDamage)
+                            {
+                                if (maxDamage <= targetDamage) {
+                                    maxDamage = targetDamage;
+                                    crystal = entity;
+                                }
+                            }
+                        }else {
+                            if (maxDamage <= targetDamage) {
+                                maxDamage = targetDamage;
+                                crystal = entity;
+                            }
                         }
                     }
                 }
@@ -210,6 +233,8 @@ public class AutoCrystal
     }
 
     private void doPlace() {
+        EntityHusk pl = new EntityHusk(mc.world);
+        pl.setPosition(MovementUtil.extrapolatePlayerPositionWithGravity(mc.player, 40).x, MovementUtil.extrapolatePlayerPositionWithGravity(mc.player, 40).y, MovementUtil.extrapolatePlayerPositionWithGravity(mc.player, 40).z);
         BlockPos placePos = null;
         double maxDamage = 0.5;
         final List<BlockPos> sphere = BlockUtil.getSphereRealth(this.placeRange.getValue(), true);
@@ -220,11 +245,26 @@ public class AutoCrystal
                 if (targetDamage > this.minDamage.getValue() || targetDamage * this.lethalMult.getValue() > this.currentTarget.getHealth() + this.currentTarget.getAbsorptionAmount() || ItemUtil.isArmorUnderPercent(this.currentTarget, this.armorScale.getValue())) {
                     final float selfDamage = EntityUtil.calculate(pos.getX() + 0.5, pos.getY() + 1.0, pos.getZ() + 0.5, (EntityLivingBase) this.mc.player);
                     if (selfDamage <= this.maxSelf.getValue() && selfDamage + 2.0f <= this.mc.player.getHealth() + this.mc.player.getAbsorptionAmount() && selfDamage < targetDamage) {
-                        if (maxDamage <= targetDamage) {
-                            maxDamage = targetDamage;
-                            placePos = pos;
-                            this.renderPos = pos;
-                            this.renderDamage = targetDamage;
+                        if(this.PredictPlayerPos.getValue()==true)
+                        {
+                            final float selfDamage2 = EntityUtil.calculate(pos.getX() + 0.5, pos.getY() + 1.0, pos.getZ() + 0.5, (EntityLivingBase) pl);
+
+                            if(selfDamage2 <= this.maxSelf.getValue() && selfDamage2 + 2.0f <= this.mc.player.getHealth() + this.mc.player.getAbsorptionAmount() && 2 < targetDamage)
+                            {
+                                if (maxDamage <= targetDamage) {
+                                    maxDamage = targetDamage;
+                                    placePos = pos;
+                                    this.renderPos = pos;
+                                    this.renderDamage = targetDamage;
+                                }
+                            }
+                        }else {
+                            if (maxDamage <= targetDamage) {
+                                maxDamage = targetDamage;
+                                placePos = pos;
+                                this.renderPos = pos;
+                                this.renderDamage = targetDamage;
+                            }
                         }
                     }
                 }

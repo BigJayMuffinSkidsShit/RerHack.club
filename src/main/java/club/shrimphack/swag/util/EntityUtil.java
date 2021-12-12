@@ -68,6 +68,8 @@ public class EntityUtil
         return getBlastReduction(entity, getDamageMultiplied(damage), new Explosion(mc.world, null, posX, posY, posZ, 6.0f, false, true));
     }
 
+
+
     public static EntityPlayer getClosestPlayer(final float range) {
         EntityPlayer player = null;
         double maxDistance = 999F;
