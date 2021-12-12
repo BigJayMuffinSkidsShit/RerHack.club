@@ -33,7 +33,7 @@ public class FakePlayer extends Module {
         clonedPlayer.rotationYaw = mc.player.rotationYaw;
         clonedPlayer.rotationPitch = mc.player.rotationPitch;
         clonedPlayer.setGameType(GameType.SURVIVAL);
-        clonedPlayer.setHealth(20);
+        clonedPlayer.setHealth(36);
         mc.world.addEntityToWorld(-12345, clonedPlayer);
         clonedPlayer.onLivingUpdate();
     }

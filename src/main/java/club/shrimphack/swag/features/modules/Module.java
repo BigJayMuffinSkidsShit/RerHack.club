@@ -82,11 +82,11 @@ public class Module
     }
 
     public boolean isOn() {
-        return this.enabled.getValue();
+        return this.enabled.getValue(true);
     }
 
     public boolean isOff() {
-        return this.enabled.getValue() == false;
+        return this.enabled.getValue(true) == false;
     }
 
     public void setEnabled(boolean enabled) {
@@ -101,7 +101,7 @@ public class Module
         this.enabled.setValue(Boolean.TRUE);
         this.onToggle();
         this.onEnable();
-        if (HUD.getInstance().notifyToggles.getValue().booleanValue()) {
+        if (HUD.getInstance().notifyToggles.getValue(true).booleanValue()) {
             TextComponentString text = new TextComponentString(RerHack.commandManager.getClientMessage() + " " + ChatFormatting.GREEN + this.getDisplayName() + " toggled on.");
             Module.mc.ingameGUI.getChatGUI().printChatMessageWithOptionalDeletion(text, 1);
         }
@@ -115,7 +115,7 @@ public class Module
             MinecraftForge.EVENT_BUS.unregister(this);
         }
         this.enabled.setValue(false);
-        if (HUD.getInstance().notifyToggles.getValue().booleanValue()) {
+        if (HUD.getInstance().notifyToggles.getValue(true).booleanValue()) {
             TextComponentString text = new TextComponentString(RerHack.commandManager.getClientMessage() + " " + ChatFormatting.RED + this.getDisplayName() + " toggled off.");
             Module.mc.ingameGUI.getChatGUI().printChatMessageWithOptionalDeletion(text, 1);
         }
@@ -132,7 +132,7 @@ public class Module
     }
 
     public String getDisplayName() {
-        return this.displayName.getValue();
+        return this.displayName.getValue(true);
     }
 
     public void setDisplayName(String name) {
@@ -151,7 +151,7 @@ public class Module
     }
 
     public boolean isDrawn() {
-        return this.drawn.getValue();
+        return this.drawn.getValue(true);
     }
 
     public void setDrawn(boolean drawn) {
@@ -167,7 +167,7 @@ public class Module
     }
 
     public Bind getBind() {
-        return this.bind.getValue();
+        return this.bind.getValue(true);
     }
 
     public void setBind(int key) {

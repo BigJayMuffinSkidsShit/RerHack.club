@@ -29,8 +29,8 @@ public class Slider
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         this.dragSetting(mouseX, mouseY);
         RenderUtil.drawRect(this.x, this.y, this.x + (float) this.width + 7.4f, this.y + (float) this.height - 0.5f, !this.isHovering(mouseX, mouseY) ? 0x11555555 : -2007673515);
-        RenderUtil.drawRect(this.x, this.y, ((Number) this.setting.getValue()).floatValue() <= this.min.floatValue() ? this.x : this.x + ((float) this.width + 7.4f) * this.partialMultiplier(), this.y + (float) this.height - 0.5f, !this.isHovering(mouseX, mouseY) ? RerHack.colorManager.getColorWithAlpha(RerHack.moduleManager.getModuleByClass(ClickGui.class).hoverAlpha.getValue()) : RerHack.colorManager.getColorWithAlpha(RerHack.moduleManager.getModuleByClass(ClickGui.class).alpha.getValue()));
-        RerHack.textManager.drawStringWithShadow(this.getName() + " " + ChatFormatting.GRAY + (this.setting.getValue() instanceof Float ? this.setting.getValue() : Double.valueOf(((Number) this.setting.getValue()).doubleValue())), this.x + 2.3f, this.y - 1.7f - (float) OyVeyGui.getClickGui().getTextOffset(), -1);
+        RenderUtil.drawRect(this.x, this.y, ((Number) this.setting.getValue(true)).floatValue() <= this.min.floatValue() ? this.x : this.x + ((float) this.width + 7.4f) * this.partialMultiplier(), this.y + (float) this.height - 0.5f, !this.isHovering(mouseX, mouseY) ? RerHack.colorManager.getColorWithAlpha(RerHack.moduleManager.getModuleByClass(ClickGui.class).hoverAlpha.getValue(true)) : RerHack.colorManager.getColorWithAlpha(RerHack.moduleManager.getModuleByClass(ClickGui.class).alpha.getValue(true)));
+        RerHack.textManager.drawStringWithShadow(this.getName() + " " + ChatFormatting.GRAY + (this.setting.getValue(true) instanceof Float ? this.setting.getValue(true) : Double.valueOf(((Number) this.setting.getValue(true)).doubleValue())), this.x + 2.3f, this.y - 1.7f - (float) OyVeyGui.getClickGui().getTextOffset(), -1);
     }
 
     @Override
@@ -68,13 +68,13 @@ public class Slider
 
     private void setSettingFromX(int mouseX) {
         float percent = ((float) mouseX - this.x) / ((float) this.width + 7.4f);
-        if (this.setting.getValue() instanceof Double) {
+        if (this.setting.getValue(true) instanceof Double) {
             double result = (Double) this.setting.getMin() + (double) ((float) this.difference * percent);
             this.setting.setValue((double) Math.round(10.0 * result) / 10.0);
-        } else if (this.setting.getValue() instanceof Float) {
+        } else if (this.setting.getValue(true) instanceof Float) {
             float result = ((Float) this.setting.getMin()).floatValue() + (float) this.difference * percent;
             this.setting.setValue(Float.valueOf((float) Math.round(10.0f * result) / 10.0f));
-        } else if (this.setting.getValue() instanceof Integer) {
+        } else if (this.setting.getValue(true) instanceof Integer) {
             this.setting.setValue((Integer) this.setting.getMin() + (int) ((float) this.difference * percent));
         }
     }
@@ -84,7 +84,7 @@ public class Slider
     }
 
     private float part() {
-        return ((Number) this.setting.getValue()).floatValue() - this.min.floatValue();
+        return ((Number) this.setting.getValue(true)).floatValue() - this.min.floatValue();
     }
 
     private float partialMultiplier() {

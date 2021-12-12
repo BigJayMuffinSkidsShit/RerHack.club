@@ -11,7 +11,7 @@ public class Step extends Module {
     public Setting<Float> height = this.register(new Setting<Float>("Height",2.0f,0.1f,2.5f));
 
     public void onUpdate() {
-        mc.player.stepHeight = this.height.getValue();
+        mc.player.stepHeight = this.height.getValue(true);
     }
 
     public void onDisable() {

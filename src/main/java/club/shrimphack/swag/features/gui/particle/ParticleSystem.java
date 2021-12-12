@@ -59,7 +59,7 @@ public class ParticleSystem
             return;
         }
         for (final Particle particle : this.particleList) {
-            GL11.glColor4f(ClickGui.getInstance().red.getValue() / 255.0f, ClickGui.getInstance().green.getValue() / 255.0f, ClickGui.getInstance().blue.getValue() / 255.0f, particle.getAlpha() / 255.0f);
+            GL11.glColor4f(ClickGui.getInstance().red.getValue(true) / 255.0f, ClickGui.getInstance().green.getValue(true) / 255.0f, ClickGui.getInstance().blue.getValue(true) / 255.0f, particle.getAlpha() / 255.0f);
             GL11.glPointSize(particle.getSize());
             GL11.glBegin(0);
             GL11.glVertex2f(particle.getX(), particle.getY());
@@ -83,7 +83,7 @@ public class ParticleSystem
                 continue;
             }
             final float alpha = Math.min(1.0f, Math.min(1.0f, 1.0f - nearestDistance / dist));
-            this.drawLine(particle.getX(), particle.getY(), nearestParticle.getX(), nearestParticle.getY(), ClickGui.getInstance().red.getValue() / 255.0f, ClickGui.getInstance().green.getValue() / 255.0f, ClickGui.getInstance().blue.getValue() / 255.0f, alpha);
+            this.drawLine(particle.getX(), particle.getY(), nearestParticle.getX(), nearestParticle.getY(), ClickGui.getInstance().red.getValue(true) / 255.0f, ClickGui.getInstance().green.getValue(true) / 255.0f, ClickGui.getInstance().blue.getValue(true) / 255.0f, alpha);
         }
         GL11.glPushMatrix();
         GL11.glTranslatef(0.5f, 0.5f, 0.5f);

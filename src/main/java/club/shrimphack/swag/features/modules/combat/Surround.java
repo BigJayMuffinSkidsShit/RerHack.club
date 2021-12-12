@@ -54,7 +54,7 @@ public class Surround extends Module
         }
         lastHotbarSlot = Surround.mc.player.inventory.currentItem;
         startPos = EntityUtil.getRoundedBlockPos(Surround.mc.player);
-        if (center.getValue().booleanValue()) {
+        if (center.getValue(true).booleanValue()) {
             RerHack.positionManager.setPositionPacket((double) startPos.getX() + 0.5, startPos.getY(), (double) startPos.getZ() + 0.5, true, true, true);
         }
         retries.clear();
@@ -87,10 +87,10 @@ public class Surround extends Module
         if (mc.player.posY - (int)mc.player.posY < 0.7) {
             onEChest = false;
         }
-        if (!BlockUtil.isSafe(mc.player, onEChest ? 1:0, floor.getValue())) {
-            placeBlocks(mc.player.getPositionVector(), BlockUtil.getUnsafeBlockArray(mc.player, onEChest ? 1 : 0, floor.getValue()), helpingBlocks.getValue(), false);
+        if (!BlockUtil.isSafe(mc.player, onEChest ? 1:0, floor.getValue(true))) {
+            placeBlocks(mc.player.getPositionVector(), BlockUtil.getUnsafeBlockArray(mc.player, onEChest ? 1 : 0, floor.getValue(true)), helpingBlocks.getValue(true), false);
         } else if (!BlockUtil.isSafe(mc.player, onEChest ? 0 : -1, false)) {
-            if (antiPedo.getValue()) {
+            if (antiPedo.getValue(true)) {
                 placeBlocks(mc.player.getPositionVector(), BlockUtil.getUnsafeBlockArray(mc.player, onEChest ? 0 : -1, false), false, false);
             }
         }
@@ -203,11 +203,11 @@ public class Surround extends Module
             disable();
             return true;
         }
-        return !timer.passedMs(delay.getValue().intValue());
+        return !timer.passedMs(delay.getValue(true).intValue());
     }
 
     private void placeBlock(BlockPos pos) {
-        if (placements < blocksPerTick.getValue()) {
+        if (placements < blocksPerTick.getValue(true)) {
             int originalSlot = Surround.mc.player.inventory.currentItem;
             int obbySlot = InventoryUtil.findHotbarBlock(BlockObsidian.class);
             int eChestSot = InventoryUtil.findHotbarBlock(BlockEnderChest.class);
@@ -217,7 +217,7 @@ public class Surround extends Module
             isPlacing = true;
             Surround.mc.player.inventory.currentItem = obbySlot == -1 ? eChestSot : obbySlot;
             Surround.mc.playerController.updateController();
-            isSneaking = BlockUtil.placeBlock(pos, offHand ? EnumHand.OFF_HAND : EnumHand.MAIN_HAND, rotate.getValue(), noGhost.getValue(), isSneaking);
+            isSneaking = BlockUtil.placeBlock(pos, offHand ? EnumHand.OFF_HAND : EnumHand.MAIN_HAND, rotate.getValue(true), noGhost.getValue(true), isSneaking);
             Surround.mc.player.inventory.currentItem = originalSlot;
             Surround.mc.playerController.updateController();
             didPlace = true;

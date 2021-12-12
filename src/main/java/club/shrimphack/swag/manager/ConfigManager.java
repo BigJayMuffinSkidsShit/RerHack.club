@@ -45,7 +45,7 @@ public class ConfigManager implements Util {
                 return;
             case "Enum":
                 try {
-                    EnumConverter converter = new EnumConverter(((Enum) setting.getValue()).getClass());
+                    EnumConverter converter = new EnumConverter(((Enum) setting.getValue(true)).getClass());
                     Enum value = converter.doBackward(element);
                     setting.setValue((value == null) ? setting.getDefaultValue() : value);
                 } catch (Exception exception) {
@@ -212,12 +212,12 @@ public class ConfigManager implements Util {
         JsonParser jp = new JsonParser();
         for (Setting setting : feature.getSettings()) {
             if (setting.isEnumSetting()) {
-                EnumConverter converter = new EnumConverter(((Enum) setting.getValue()).getClass());
-                object.add(setting.getName(), converter.doForward((Enum) setting.getValue()));
+                EnumConverter converter = new EnumConverter(((Enum) setting.getValue(true)).getClass());
+                object.add(setting.getName(), converter.doForward((Enum) setting.getValue(true)));
                 continue;
             }
             if (setting.isStringSetting()) {
-                String str = (String) setting.getValue();
+                String str = (String) setting.getValue(true);
                 setting.setValue(str.replace(" ", "_"));
             }
             try {

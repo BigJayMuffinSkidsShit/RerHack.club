@@ -54,13 +54,13 @@ public class ModuleButton
         ArrayList<Item> newItems = new ArrayList<Item>();
         if (!this.module.getSettings().isEmpty()) {
             for (Setting setting : this.module.getSettings()) {
-                if (setting.getValue() instanceof Boolean && !setting.getName().equals("Enabled")) {
+                if (setting.getValue(true) instanceof Boolean && !setting.getName().equals("Enabled")) {
                     newItems.add(new BooleanButton(setting));
                 }
-                if (setting.getValue() instanceof Bind && !setting.getName().equalsIgnoreCase("Keybind") && !this.module.getName().equalsIgnoreCase("Hud")) {
+                if (setting.getValue(true) instanceof Bind && !setting.getName().equalsIgnoreCase("Keybind") && !this.module.getName().equalsIgnoreCase("Hud")) {
                     newItems.add(new BindButton(setting));
                 }
-                if ((setting.getValue() instanceof String || setting.getValue() instanceof Character) && !setting.getName().equalsIgnoreCase("displayName")) {
+                if ((setting.getValue(true) instanceof String || setting.getValue(true) instanceof Character) && !setting.getName().equalsIgnoreCase("displayName")) {
                     newItems.add(new StringButton(setting));
                 }
                 if (setting.isNumberSetting() && setting.hasRestriction()) {
@@ -79,7 +79,7 @@ public class ModuleButton
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         super.drawScreen(mouseX, mouseY, partialTicks);
         if (!this.items.isEmpty()) {
-            if (HUD.getInstance().magenDavid.getValue().booleanValue()) {
+            if (HUD.getInstance().magenDavid.getValue(true).booleanValue()) {
                 Util.mc.getTextureManager().bindTexture(this.logo);
                 ModuleButton.drawCompleteImage(this.x - 1.5f + (float) this.width - 7.4f, this.y - 2.2f - (float) OyVeyGui.getClickGui().getTextOffset(), 8, 8);
             }

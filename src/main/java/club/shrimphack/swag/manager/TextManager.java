@@ -25,7 +25,7 @@ public class TextManager
     public void init(boolean startup) {
         FontMod cFont = RerHack.moduleManager.getModuleByClass(FontMod.class);
         try {
-            this.setFontRenderer(new Font(cFont.fontName.getValue(), cFont.fontStyle.getValue(), cFont.fontSize.getValue()), cFont.antiAlias.getValue(), cFont.fractionalMetrics.getValue());
+            this.setFontRenderer(new Font(cFont.fontName.getValue(true), cFont.fontStyle.getValue(true), cFont.fontSize.getValue(true)), cFont.antiAlias.getValue(true), cFont.fractionalMetrics.getValue(true));
         } catch (Exception exception) {
             // empty catch block
         }

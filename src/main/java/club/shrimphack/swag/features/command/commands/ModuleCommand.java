@@ -41,7 +41,7 @@ public class ModuleCommand
         if (commands.length == 2) {
             ModuleCommand.sendMessage(module.getDisplayName() + " : " + module.getDescription());
             for (Setting setting2 : module.getSettings()) {
-                ModuleCommand.sendMessage(setting2.getName() + " : " + setting2.getValue() + ", " + setting2.getDescription());
+                ModuleCommand.sendMessage(setting2.getName() + " : " + setting2.getValue(true) + ", " + setting2.getDescription());
             }
             return;
         }

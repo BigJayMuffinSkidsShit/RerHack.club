@@ -20,7 +20,7 @@ public class BooleanButton
 
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-        RenderUtil.drawRect(this.x, this.y, this.x + (float) this.width + 7.4f, this.y + (float) this.height - 0.5f, this.getState() ? (!this.isHovering(mouseX, mouseY) ? RerHack.colorManager.getColorWithAlpha(RerHack.moduleManager.getModuleByClass(ClickGui.class).hoverAlpha.getValue()) : RerHack.colorManager.getColorWithAlpha(RerHack.moduleManager.getModuleByClass(ClickGui.class).alpha.getValue())) : (!this.isHovering(mouseX, mouseY) ? 0x11555555 : -2007673515));
+        RenderUtil.drawRect(this.x, this.y, this.x + (float) this.width + 7.4f, this.y + (float) this.height - 0.5f, this.getState() ? (!this.isHovering(mouseX, mouseY) ? RerHack.colorManager.getColorWithAlpha(RerHack.moduleManager.getModuleByClass(ClickGui.class).hoverAlpha.getValue(true)) : RerHack.colorManager.getColorWithAlpha(RerHack.moduleManager.getModuleByClass(ClickGui.class).alpha.getValue(true))) : (!this.isHovering(mouseX, mouseY) ? 0x11555555 : -2007673515));
         RerHack.textManager.drawStringWithShadow(this.getName(), this.x + 2.3f, this.y - 1.7f - (float) OyVeyGui.getClickGui().getTextOffset(), this.getState() ? -1 : -5592406);
     }
 
@@ -44,12 +44,12 @@ public class BooleanButton
 
     @Override
     public void toggle() {
-        this.setting.setValue((Boolean) this.setting.getValue() == false);
+        this.setting.setValue((Boolean) this.setting.getValue(true) == false);
     }
 
     @Override
     public boolean getState() {
-        return (Boolean) this.setting.getValue();
+        return (Boolean) this.setting.getValue(true);
     }
 }
 

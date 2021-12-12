@@ -54,7 +54,7 @@ public class EventManager extends Feature {
         if (!fullNullCheck() && (event.getEntity().getEntityWorld()).isRemote && event.getEntityLiving().equals(mc.player)) {
             RerHack.inventoryManager.update();
             RerHack.moduleManager.onUpdate();
-            if ((HUD.getInstance()).renderingMode.getValue() == HUD.RenderingMode.Length) {
+            if ((HUD.getInstance()).renderingMode.getValue(true) == HUD.RenderingMode.Length) {
                 RerHack.moduleManager.sortModules(true);
             } else {
                 RerHack.moduleManager.sortModulesABC();

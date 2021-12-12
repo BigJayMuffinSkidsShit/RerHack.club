@@ -22,8 +22,8 @@ public class UnlimitedSlider
 
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-        RenderUtil.drawRect(this.x, this.y, this.x + (float) this.width + 7.4f, this.y + (float) this.height - 0.5f, !this.isHovering(mouseX, mouseY) ? RerHack.colorManager.getColorWithAlpha(RerHack.moduleManager.getModuleByClass(ClickGui.class).hoverAlpha.getValue()) : RerHack.colorManager.getColorWithAlpha(RerHack.moduleManager.getModuleByClass(ClickGui.class).alpha.getValue()));
-        RerHack.textManager.drawStringWithShadow(" - " + this.setting.getName() + " " + ChatFormatting.GRAY + this.setting.getValue() + ChatFormatting.WHITE + " +", this.x + 2.3f, this.y - 1.7f - (float) OyVeyGui.getClickGui().getTextOffset(), this.getState() ? -1 : -5592406);
+        RenderUtil.drawRect(this.x, this.y, this.x + (float) this.width + 7.4f, this.y + (float) this.height - 0.5f, !this.isHovering(mouseX, mouseY) ? RerHack.colorManager.getColorWithAlpha(RerHack.moduleManager.getModuleByClass(ClickGui.class).hoverAlpha.getValue(true)) : RerHack.colorManager.getColorWithAlpha(RerHack.moduleManager.getModuleByClass(ClickGui.class).alpha.getValue(true)));
+        RerHack.textManager.drawStringWithShadow(" - " + this.setting.getName() + " " + ChatFormatting.GRAY + this.setting.getValue(true) + ChatFormatting.WHITE + " +", this.x + 2.3f, this.y - 1.7f - (float) OyVeyGui.getClickGui().getTextOffset(), this.getState() ? -1 : -5592406);
     }
 
     @Override
@@ -32,19 +32,19 @@ public class UnlimitedSlider
         if (this.isHovering(mouseX, mouseY)) {
             Util.mc.getSoundHandler().playSound(PositionedSoundRecord.getMasterRecord(SoundEvents.UI_BUTTON_CLICK, 1.0f));
             if (this.isRight(mouseX)) {
-                if (this.setting.getValue() instanceof Double) {
-                    this.setting.setValue((Double) this.setting.getValue() + 1.0);
-                } else if (this.setting.getValue() instanceof Float) {
-                    this.setting.setValue(Float.valueOf(((Float) this.setting.getValue()).floatValue() + 1.0f));
-                } else if (this.setting.getValue() instanceof Integer) {
-                    this.setting.setValue((Integer) this.setting.getValue() + 1);
+                if (this.setting.getValue(true) instanceof Double) {
+                    this.setting.setValue((Double) this.setting.getValue(true) + 1.0);
+                } else if (this.setting.getValue(true) instanceof Float) {
+                    this.setting.setValue(Float.valueOf(((Float) this.setting.getValue(true)).floatValue() + 1.0f));
+                } else if (this.setting.getValue(true) instanceof Integer) {
+                    this.setting.setValue((Integer) this.setting.getValue(true) + 1);
                 }
-            } else if (this.setting.getValue() instanceof Double) {
-                this.setting.setValue((Double) this.setting.getValue() - 1.0);
-            } else if (this.setting.getValue() instanceof Float) {
-                this.setting.setValue(Float.valueOf(((Float) this.setting.getValue()).floatValue() - 1.0f));
-            } else if (this.setting.getValue() instanceof Integer) {
-                this.setting.setValue((Integer) this.setting.getValue() - 1);
+            } else if (this.setting.getValue(true) instanceof Double) {
+                this.setting.setValue((Double) this.setting.getValue(true) - 1.0);
+            } else if (this.setting.getValue(true) instanceof Float) {
+                this.setting.setValue(Float.valueOf(((Float) this.setting.getValue(true)).floatValue() - 1.0f));
+            } else if (this.setting.getValue(true) instanceof Integer) {
+                this.setting.setValue((Integer) this.setting.getValue(true) - 1);
             }
         }
     }

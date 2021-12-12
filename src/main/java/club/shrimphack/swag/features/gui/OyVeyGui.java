@@ -98,14 +98,14 @@ public class OyVeyGui
         this.drawDefaultBackground();
         this.components.forEach(components -> components.drawScreen(mouseX, mouseY, partialTicks));
         ScaledResolution sr = new ScaledResolution(mc);
-        if (ClickGui.getInstance().gradient.getValue()) {
-            this.drawGradientRect(0, 0, sr.getScaledWidth(), sr.getScaledHeight(), 0, ((boolean)ClickGui.getInstance().rainbow.getValue()) ? Colors.INSTANCE.getCurrentColor().getRGB() : new Color(ClickGui.getInstance().red.getValue(), ClickGui.getInstance().green.getValue(), ClickGui.getInstance().blue.getValue(), ClickGui.getInstance().alpha.getValue() / 2).getRGB());
+        if (ClickGui.getInstance().gradient.getValue(true)) {
+            this.drawGradientRect(0, 0, sr.getScaledWidth(), sr.getScaledHeight(), 0, ((boolean)ClickGui.getInstance().rainbow.getValue(true)) ? Colors.INSTANCE.getCurrentColor().getRGB() : new Color(ClickGui.getInstance().red.getValue(true), ClickGui.getInstance().green.getValue(true), ClickGui.getInstance().blue.getValue(true), ClickGui.getInstance().alpha.getValue(true) / 2).getRGB());
         }
-        if (!this._snowList.isEmpty() && ClickGui.getInstance().snow.getValue()) {
+        if (!this._snowList.isEmpty() && ClickGui.getInstance().snow.getValue(true)) {
             this._snowList.forEach(snow -> snow.Update(sr));
         }
 
-        if (ClickGui.getInstance().particles.getValue()) {
+        if (ClickGui.getInstance().particles.getValue(true)) {
             this.particleSystem.tick(10);
             this.particleSystem.render();
         }

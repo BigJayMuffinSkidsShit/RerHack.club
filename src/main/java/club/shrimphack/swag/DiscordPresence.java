@@ -4,7 +4,6 @@ import club.minnced.discord.rpc.DiscordEventHandlers;
 import club.minnced.discord.rpc.DiscordRPC;
 import club.minnced.discord.rpc.DiscordRichPresence;
 import club.shrimphack.swag.features.modules.misc.RPC;
-import com.sun.jna.platform.FileMonitor;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiMainMenu;
 
@@ -25,7 +24,7 @@ public class DiscordPresence {
         DiscordEventHandlers handlers = new DiscordEventHandlers();
         rpc.Discord_Initialize("918978892440666132", handlers, true, "");
         DiscordPresence.presence.startTimestamp = System.currentTimeMillis() / 1000L;
-        DiscordPresence.presence.details = Minecraft.getMinecraft().currentScreen instanceof GuiMainMenu ? "In the main menu." : "Playing " + (Minecraft.getMinecraft().getCurrentServerData() != null ? (RPC.INSTANCE.ip.getValue().booleanValue() ? "on " + Minecraft.getMinecraft().getCurrentServerData().serverIP + "." : " multiplayer.") : " singleplayer.");
+        DiscordPresence.presence.details = Minecraft.getMinecraft().currentScreen instanceof GuiMainMenu ? "In the main menu." : "Playing " + (Minecraft.getMinecraft().getCurrentServerData() != null ? (RPC.INSTANCE.ip.getValue(true).booleanValue() ? "on " + Minecraft.getMinecraft().getCurrentServerData().serverIP + "." : " multiplayer.") : " singleplayer.");
         DiscordPresence.presence.state = "bigjmuffin is hot";
         DiscordPresence.presence.largeImageKey = "rpclogo";
         DiscordPresence.presence.largeImageText = "https://discord.gg/QHJ76ynraT";
@@ -33,7 +32,7 @@ public class DiscordPresence {
         thread = new Thread(() -> {
             while (!Thread.currentThread().isInterrupted()) {
                 rpc.Discord_RunCallbacks();
-                DiscordPresence.presence.details = Minecraft.getMinecraft().currentScreen instanceof GuiMainMenu ? "In the main menu." : "Playing " + (Minecraft.getMinecraft().getCurrentServerData() != null ? (RPC.INSTANCE.ip.getValue().booleanValue() ? "on " + Minecraft.getMinecraft().getCurrentServerData().serverIP + "." : " multiplayer.") : " singleplayer.");
+                DiscordPresence.presence.details = Minecraft.getMinecraft().currentScreen instanceof GuiMainMenu ? "In the main menu." : "Playing " + (Minecraft.getMinecraft().getCurrentServerData() != null ? (RPC.INSTANCE.ip.getValue(true).booleanValue() ? "on " + Minecraft.getMinecraft().getCurrentServerData().serverIP + "." : " multiplayer.") : " singleplayer.");
                 rpc.Discord_UpdatePresence(presence);
                 try {
                     Thread.sleep(2000L);

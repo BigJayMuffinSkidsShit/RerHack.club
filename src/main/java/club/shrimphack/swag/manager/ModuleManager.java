@@ -1,12 +1,17 @@
 package club.shrimphack.swag.manager;
 
 import club.shrimphack.swag.features.modules.combat.AutoCrystal;
+import club.shrimphack.swag.features.modules.combat.AutoTrap;
 import club.shrimphack.swag.features.modules.combat.Surround;
+import club.shrimphack.swag.features.modules.misc.RPC;
 import club.shrimphack.swag.features.modules.movements.Sprint;
 import club.shrimphack.swag.features.modules.movements.Step;
 import club.shrimphack.swag.features.modules.movements.Strafe;
 import club.shrimphack.swag.features.modules.player.FakePlayer;
+import club.shrimphack.swag.features.modules.render.DeathEffects;
+import club.shrimphack.swag.features.modules.render.ESP;
 import club.shrimphack.swag.features.modules.render.HoleESP;
+import club.shrimphack.swag.features.modules.render.StrictLimbs;
 import club.shrimphack.swag.util.Util;
 import com.mojang.realmsclient.gui.ChatFormatting;
 import club.shrimphack.swag.RerHack;
@@ -49,6 +54,11 @@ public class ModuleManager
         this.modules.add(new AutoCrystal());
         this.modules.add(new HoleESP());
         this.modules.add(new Strafe());
+        this.modules.add(new StrictLimbs());
+        this.modules.add(new ESP());
+        this.modules.add(new DeathEffects());
+        this.modules.add(new AutoTrap());
+        this.modules.add(new RPC());
     }
 
     public Module getModuleByName(String name) {
@@ -219,18 +229,18 @@ public class ModuleManager
 
         @Override
         public void run() {
-            if (HUD.getInstance().renderingMode.getValue() == HUD.RenderingMode.Length) {
+            if (HUD.getInstance().renderingMode.getValue(true) == HUD.RenderingMode.Length) {
                 for (Module module : ModuleManager.this.sortedModules) {
                     String text = module.getDisplayName() + ChatFormatting.GRAY + (module.getDisplayInfo() != null ? " [" + ChatFormatting.WHITE + module.getDisplayInfo() + ChatFormatting.GRAY + "]" : "");
-                    module.offset = (float) ModuleManager.this.renderer.getStringWidth(text) / HUD.getInstance().animationHorizontalTime.getValue().floatValue();
-                    module.vOffset = (float) ModuleManager.this.renderer.getFontHeight() / HUD.getInstance().animationVerticalTime.getValue().floatValue();
-                    if (module.isEnabled() && HUD.getInstance().animationHorizontalTime.getValue() != 1) {
+                    module.offset = (float) ModuleManager.this.renderer.getStringWidth(text) / HUD.getInstance().animationHorizontalTime.getValue(true).floatValue();
+                    module.vOffset = (float) ModuleManager.this.renderer.getFontHeight() / HUD.getInstance().animationVerticalTime.getValue(true).floatValue();
+                    if (module.isEnabled() && HUD.getInstance().animationHorizontalTime.getValue(true) != 1) {
                         if (!(module.arrayListOffset > module.offset) || Util.mc.world == null) continue;
                         module.arrayListOffset -= module.offset;
                         module.sliding = true;
                         continue;
                     }
-                    if (!module.isDisabled() || HUD.getInstance().animationHorizontalTime.getValue() == 1) continue;
+                    if (!module.isDisabled() || HUD.getInstance().animationHorizontalTime.getValue(true) == 1) continue;
                     if (module.arrayListOffset < (float) ModuleManager.this.renderer.getStringWidth(text) && Util.mc.world != null) {
                         module.arrayListOffset += module.offset;
                         module.sliding = true;
@@ -242,15 +252,15 @@ public class ModuleManager
                 for (String e : ModuleManager.this.sortedModulesABC) {
                     Module module = RerHack.moduleManager.getModuleByName(e);
                     String text = module.getDisplayName() + ChatFormatting.GRAY + (module.getDisplayInfo() != null ? " [" + ChatFormatting.WHITE + module.getDisplayInfo() + ChatFormatting.GRAY + "]" : "");
-                    module.offset = (float) ModuleManager.this.renderer.getStringWidth(text) / HUD.getInstance().animationHorizontalTime.getValue().floatValue();
-                    module.vOffset = (float) ModuleManager.this.renderer.getFontHeight() / HUD.getInstance().animationVerticalTime.getValue().floatValue();
-                    if (module.isEnabled() && HUD.getInstance().animationHorizontalTime.getValue() != 1) {
+                    module.offset = (float) ModuleManager.this.renderer.getStringWidth(text) / HUD.getInstance().animationHorizontalTime.getValue(true).floatValue();
+                    module.vOffset = (float) ModuleManager.this.renderer.getFontHeight() / HUD.getInstance().animationVerticalTime.getValue(true).floatValue();
+                    if (module.isEnabled() && HUD.getInstance().animationHorizontalTime.getValue(true) != 1) {
                         if (!(module.arrayListOffset > module.offset) || Util.mc.world == null) continue;
                         module.arrayListOffset -= module.offset;
                         module.sliding = true;
                         continue;
                     }
-                    if (!module.isDisabled() || HUD.getInstance().animationHorizontalTime.getValue() == 1) continue;
+                    if (!module.isDisabled() || HUD.getInstance().animationHorizontalTime.getValue(true) == 1) continue;
                     if (module.arrayListOffset < (float) ModuleManager.this.renderer.getStringWidth(text) && Util.mc.world != null) {
                         module.arrayListOffset += module.offset;
                         module.sliding = true;
