@@ -1,5 +1,6 @@
 package club.shrimphack.swag.manager;
 
+import club.shrimphack.swag.features.ClassFinder;
 import club.shrimphack.swag.features.Feature;
 import club.shrimphack.swag.features.gui.OyVeyGui;
 import club.shrimphack.swag.features.modules.Module;
@@ -41,18 +42,12 @@ public class ModuleManager
     public Animation animationThread;
 
     public void init() {
-        this.modules.add(new ClickGui());
-        this.modules.add(new FontMod());
-        this.modules.add(new HUD());
-        this.modules.add(new Step());
-        this.modules.add(new Sprint());
-        this.modules.add(new Surround());
-        this.modules.add(new FakePlayer());
-        this.modules.add(new AutoCrystal());
-        this.modules.add(new HoleESP());
-        this.modules.add(new Strafe());
-        this.modules.add(new NoRender());
-        this.modules.add(new SelfFill());
+        ClassFinder.addModules("combat");
+        ClassFinder.addModules("client");
+        ClassFinder.addModules("misc");
+        ClassFinder.addModules("movements");
+        ClassFinder.addModules("player");
+        ClassFinder.addModules("render");
     }
 
     public Module getModuleByName(String name) {
