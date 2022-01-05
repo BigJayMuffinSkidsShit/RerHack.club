@@ -118,6 +118,7 @@ public class EventManager extends Feature {
             SPacketPlayerListItem packet = event.getPacket();
             if (!SPacketPlayerListItem.Action.ADD_PLAYER.equals(packet.getAction()) && !SPacketPlayerListItem.Action.REMOVE_PLAYER.equals(packet.getAction()))
                 return;
+            /*
             packet.getEntries().stream().filter(Objects::nonNull).filter(data -> (!Strings.isNullOrEmpty(data.getProfile().getName()) || data.getProfile().getId() != null))
                     .forEach(data -> {
                         String name;
@@ -138,7 +139,7 @@ public class EventManager extends Feature {
                                 MinecraftForge.EVENT_BUS.post(new ConnectionEvent(2, id, null));
                                 break;
                         }
-                    });
+                    });*/
         }
         if (event.getPacket() instanceof net.minecraft.network.play.server.SPacketTimeUpdate)
             RerHack.serverManager.update();
