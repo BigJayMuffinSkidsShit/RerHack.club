@@ -8,6 +8,10 @@
     "accessors.IServerAddress",
     "MixinNetworkManager",
     "accessors.AccessorCPacketUseEntity",
-    "IEntity"
+    "IEntity",
+    "MixinRenderLivingBase",
+    "MixinRenderEnderCrystal",
+    "MixinEntityRenderer",
+    "MixinEntityPlayerSP"
     ]
     }

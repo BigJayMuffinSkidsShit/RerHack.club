@@ -10,6 +10,7 @@ import net.minecraft.inventory.ClickType;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.*;
+import net.minecraft.network.Packet;
 import net.minecraft.network.play.client.CPacketHeldItemChange;
 
 import java.util.ArrayList;
@@ -417,5 +418,18 @@ public class InventoryUtil
             return !this.update;
         }
     }
+
+    public static void silentSwitchToHotSlot(final int slot) {
+        Minecraft.getMinecraft().player.connection.sendPacket((Packet)new CPacketHeldItemChange(slot));
+        Minecraft.getMinecraft().playerController.updateController();
+    }
+
+    public static void switchToHotSlot(final int slut)
+    {
+        Minecraft.getMinecraft().player.connection.sendPacket((Packet)new CPacketHeldItemChange(slut));
+        Minecraft.getMinecraft().player.inventory.currentItem = slut;
+        Minecraft.getMinecraft().playerController.updateController();
+    }
+
 }
 
