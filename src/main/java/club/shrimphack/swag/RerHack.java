@@ -9,11 +9,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lwjgl.opengl.Display;
 
-@Mod(modid = "shrimphack", name = "RerHack.club", version = "0.3")
+@Mod(modid = "shrimphack", name = "RerHack.club", version = "0.4")
 public class RerHack {
     public static final String MODID = "shrimphack";
     public static final String MODNAME = "RerHack.club";
-    public static final String MODVER = "0.3";
+    public static final String MODVER = "0.4";
     public static final Logger LOGGER = LogManager.getLogger("RerHack.club");
     public static CommandManager commandManager;
     public static FriendManager friendManager;
@@ -82,7 +82,7 @@ public class RerHack {
         LOGGER.info("\n\nUnloading RerHack.club");
         if (unload) {
             reloadManager = new ReloadManager();
-            reloadManager.init(commandManager != null ? commandManager.getPrefix() : ".");
+            reloadManager.init(commandManager != null ? commandManager.getPrefix() : "$");
         }
         RerHack.onUnload();
         eventManager = null;
@@ -112,7 +112,7 @@ public class RerHack {
         if (!unloaded) {
             eventManager.onUnload();
             moduleManager.onUnload();
-            configManager.saveConfig(RerHack.configManager.config.replaceFirst("oyvey/", ""));
+            configManager.saveConfig(RerHack.configManager.config.replaceFirst("rerhack/", ""));
             moduleManager.onUnloadPost();
             unloaded = true;
         }
@@ -120,12 +120,12 @@ public class RerHack {
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
-        LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");
+        LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("a");LOGGER.info("What was the point of this?");
     }
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
-        Display.setTitle("RerHack.club v0.3");
+        Display.setTitle("RerHack.club " + "v" + RerHack.MODVER);
         RerHack.load();
         DiscordPresence.start();
     }

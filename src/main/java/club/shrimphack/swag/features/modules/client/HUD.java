@@ -55,6 +55,7 @@ public class HUD extends Module {
     public Setting<Integer> waterMarkY = register(new Setting("WatermarkPosY", Integer.valueOf(2), Integer.valueOf(0), Integer.valueOf(20), v -> this.waterMark.getValue().booleanValue()));
     public Setting<Boolean> time = register(new Setting("Time", Boolean.valueOf(false), "The time"));
     public Setting<Integer> lagTime = register(new Setting("LagTime", Integer.valueOf(1000), Integer.valueOf(0), Integer.valueOf(2000)));
+    public Setting<String> custom = register(new Setting("Custom Test", "RerHack.club"));
     private int color;
     private boolean shouldIncrement;
     private int hitMarkerTimer;
@@ -90,7 +91,7 @@ public class HUD extends Module {
         int height = this.renderer.scaledHeight;
         this.color = ColorUtil.toRGBA((ClickGui.getInstance()).red.getValue().intValue(), (ClickGui.getInstance()).green.getValue().intValue(), (ClickGui.getInstance()).blue.getValue().intValue());
         if (this.waterMark.getValue().booleanValue()) {
-            String string = "RerHack.club" + " v0.0.3";
+            String string = this.custom.getValue() + " v0.0.4";
             if ((ClickGui.getInstance()).rainbow.getValue().booleanValue()) {
                 if ((ClickGui.getInstance()).rainbowModeHud.getValue() == ClickGui.rainbowMode.Static) {
                     this.renderer.drawString(string, 2.0F, this.waterMarkY.getValue().intValue(), ColorUtil.rainbow((ClickGui.getInstance()).rainbowHue.getValue().intValue()).getRGB(), true);
