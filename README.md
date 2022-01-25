@@ -3,4 +3,11 @@ LOL! BIGJMUFFIN IS A 12 YEAR OLD WHO CLAIMS TO BE A GOOD CODER.. YET HE SKIDS OY
 NIGGA IS DUMB ASF 
 
 ![image](https://user-images.githubusercontent.com/85442181/150786994-35c2b8de-5843-4fc8-8925-c8d1e24ed131.png)
+
  AVERAGE BIGJMUFFIN CLIENT DEV (RETARDS LOL!)
+
+
+![image](https://user-images.githubusercontent.com/85442181/150966545-00522f1b-710a-4c5b-a45d-52d10368d23c.png)
+
+
+HES NOW CRYING THAT HIS GIT IS NUKED.. LOL!
